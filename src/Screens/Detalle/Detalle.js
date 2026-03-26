@@ -40,4 +40,4 @@ fetch(`https://api.themoviedb.org/3/movie/${id}`)
 
 }
 
-export default Detalle
+export default Detalle;
