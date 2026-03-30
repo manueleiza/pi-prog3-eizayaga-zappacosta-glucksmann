@@ -24,8 +24,7 @@ class SeccionPelis extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <section className="card-container">
+        <section className="row cards">
           {this.state.peliculas.length === 0 ? (
             <h3>Cargando...</h3>
           ) : (
@@ -41,7 +40,6 @@ class SeccionPelis extends Component {
           )}
 
         </section>
-      </React.Fragment>
     );
   }
 }
