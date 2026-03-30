@@ -9,29 +9,43 @@ class Detalle extends Component {
         super(props);
         this.state = {
             mostrar: false,
-            id: this.props.match.params.id
+            id: props.match.params.id,
+            type: props.match.params.type,
         };
     }
 
     componentDidMount(){
-        this.Detail()
+        this.state.type === "tv" ? 
+        this.DetailSerie() : 
+        this.DetailMovie()
     }
 
-detail(){
-fetch(`https://api.themoviedb.org/3/movie/${id}`)
+DetailMovie(){
+fetch(`https://api.themoviedb.org/3/${this.state.type}/${this.state.id}`)
   .then(res => res.json())
-  .then(res => this.setState(
-    {peli: data.results}
-  ))
+  .then(data => this.setState({peli: data }))
   .catch(err => console.error(err));
-
 }
+ DetailSerie(){
+fetch(`https://api.themoviedb.org/3/${this.state.type}/${this.state.id}`)
+  .then(res => res.json())
+  .then(data => this.setState({serie: data }))
+  .catch(err => console.error(err));
+}
+
 
 
     
     render() {
         return (
+            
+                //aca tengo que hacer un ternario para mostrar el artcile de peli o de tv segun cual agarre
+            
             <article className='movie-card'>
+                <img src={this.Detalle.personaje.image} alt="" />
+                <h2>{this.props.datos.name} </h2>
+                <p> {this.props.datos.status}</p>
+                <p> {this.props.datos.species} </p>
             </article>
 
         )
@@ -40,4 +54,4 @@ fetch(`https://api.themoviedb.org/3/movie/${id}`)
 
 }
 
-export default Detalle;
+export default Detalle
