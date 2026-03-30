@@ -26,7 +26,7 @@ class Card extends Component {
 
                 {this.state.mostrar ? <p>{this.props.description}</p> : null}
                 <button className="more" onClick={() => this.cambiarEstado()}>
-                    {this.state.mostrar ? "Ver menos" : "Ver más"}
+                    {this.state.mostrar ? "Ver menos" : "Ver descripción"}
                 </button>
             </article>
         );
