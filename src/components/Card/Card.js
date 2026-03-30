@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 import React, { Component } from "react";
 
+
 class Card extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +18,7 @@ class Card extends Component {
 
     render() {
         return (
-            <article>
+            <article className="single-card-movie">
                 <img
                     src={`https://image.tmdb.org/t/p/w342${this.props.image}`}
                 />
