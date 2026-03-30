@@ -20,11 +20,8 @@ class Register extends Component{
             <form onSubmit={(event) => this.evitarSubmit(event)}>
 
                 <label>Nombre: </label>
-                <input type="text" onChange={(onChange) => this.controlarCambios(event)} value={this.state.valor}/>
+                <input type="text" onChange={(onChange) => this.controlarCambios(Event)} value={this.state.valor}/>
                 <input type="submit" value="Submit"/>
-
-
-
             </form>
 
 
