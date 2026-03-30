@@ -1,5 +1,5 @@
 import { Component } from "react";
-import React from "react";
+import { withRouter } from "react-router-dom";
 
 
 class Buscador extends Component {
@@ -9,23 +9,27 @@ class Buscador extends Component {
     }
 
     onSumbit(event) {
-        event.preventDefault();
+        event.preventDefault()
+        console.log("props de buscador", this.props)
+        this.props.history.push("/busqueda/" + this.state.search)
     }
-    controlarCambios(event) {
-        this.setState({ valor: event.target.value });
-    }
+
     guardarBusqueda(event) {
-        this.setState({ search: event.target.value })
+        this.setState({ search: event.target.value }, () => console.log("log desde el setState extendido:", this.state.search))
+        console.log("El valor en estado es:", this.state.search)
     }
 
     render() {
         return (
-            <form onSubmit={(event) => this.onSumbit(event)}>
-                <button type="sumbit">Buscar</button>
-                <input onChange={(event) => this.guardarBusqueda(event)} value={this.state.search}></input>
-            </form>
+            <div>
+                <form onSubmit={(event) => this.onSumbit(event)}>
+                    <input onChange={(event) => this.guardarBusqueda(event)} value={this.state.search}></input>
+                    <button type="sumbit">Buscar</button>
+                    
+                </form>
+            </div>
         )
     }
 }
 
-export default Buscador;
+export default withRouter(Buscador);
