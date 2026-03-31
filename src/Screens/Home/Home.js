@@ -7,12 +7,12 @@ import "./styles.css"
 class Home extends Component {
     render() {
         return (
-            <main>
+            <main className="Color-de-fondo">
                 <h1>Home</h1>
                 <Buscador />
-                <h2>Peliculas más populares:</h2>
+                <h2 className="Amarillo">Peliculas más populares:</h2>
                 <SeccionPelis />
-                <h2>Series más populares:</h2>
+                <h2 className="Amarillo">Series más populares:</h2>
                 <SeccionSeries />
             </main>
         )
