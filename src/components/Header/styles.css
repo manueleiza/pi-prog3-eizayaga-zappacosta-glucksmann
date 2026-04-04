@@ -20,11 +20,13 @@ nav {
 }
 
 .nav a{
-    color: yellow;
+    color: rgb(255, 226, 64);
     text-decoration: none;
+    font-size: large;
+    font-weight: 300;
 }
 .nav a:hover{
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .nav ul{
