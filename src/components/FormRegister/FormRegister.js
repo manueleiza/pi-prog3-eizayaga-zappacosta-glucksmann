@@ -1,5 +1,5 @@
 import react, { Component } from "react";
-import "./register.css"
+import "./FormRegister.css"
 
 class FormRegister extends Component {
     constructor(props) {
@@ -41,9 +41,19 @@ class FormRegister extends Component {
             localStorage.setItem("constrseñaUsuario", this.state.contraseña)
             console.log(localStorage)
 
+            this.setState({
+            correo: '',
+            contraseña: '',
+            enviado: false, 
+            validarCorreo: false
+        });
+
+            
+
 
         }
 
+       
         console.log("el formulario se envió")
     }
 
@@ -83,20 +93,22 @@ class FormRegister extends Component {
         return (
 
             <form className="form-register" onSubmit={(event) => this.evitarSubmit(event)}>
+                <div>
+                    <label>Correo Electronico: </label>
+                    <input  className="campo-forms"  type="text" onChange={(event) => this.crearCorreo(event)} value={this.state.correo} />
+                    {this.state.correo.length === 0 && this.state.enviado ? <p className="error-contraseña">El campo está vacio</p> : ""}
+                    {this.state.validarCorreo ? <p className="error-contraseña">Este correo tiene una cuenta asociada existente</p> : ""}
+                </div>
+                <div>
+                    <label>Constrsaeña: </label>
+                    <input className="campo-forms" type="text" onChange={(event) => this.crearContraseña(event)} value={this.state.contraseña} />
+                    {this.state.contraseña.length === 0 && this.state.enviado ? <p className="error-contraseña">El campo está vacio</p> : ""}
+                </div>
+                {this.state.contraseña.length != 0 && this.state.contraseña.length < 6 && this.state.enviado ? <p className="error-contraseña">La contraseña debe contener al menos 6 caracteres</p> : ""}
 
-                <label>Correo Electronico: </label>
-                <input type="text" onChange={(event) => this.crearCorreo(event)} value={this.state.correo} />
-                {this.state.correo.length === 0 && this.state.enviado ? <p className="error-contraseña">El campo está vacio</p> : ""}
-                {this.state.validarCorreo ? <p className="error-contraseña">Este correo tiene una cuenta asociada existente</p> : ""}
-
-                <label>Constrsaeña: </label>
-                <input type="text" onChange={(event) => this.crearContraseña(event)} value={this.state.contraseña} />
-                {this.state.contraseña.length === 0 && this.state.enviado ? <p className="error-contraseña">El campo está vacio</p> : ""}
-
-                {this.state.contraseña.length !=0 && this.state.contraseña.length < 6 && this.state.enviado ? <p className="error-contraseña">La contraseña debe contener al menos 6 caracteres</p> : ""}
-
-                <input className="boton" type="submit" value="Submit" />
-
+                <input className="boton" type="submit" value="CREAR CUENTA" />
+                
+                <a className="ya-tengo-cuenta" href="">Ya tengo cuenta</a>
 
 
 

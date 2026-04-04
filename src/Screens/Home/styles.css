@@ -1,20 +1,19 @@
-nav {
-    display: grid;
-    grid-template-columns: 1fr;
-    background-color: #eee;
-    border-radius: 4px;
-    margin-bottom: 20px;
+*{
+    box-sizing: border-box;
 }
-.nav {
-    margin: 0 !important;
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
-.nav a{
-    color: #444;
-    text-decoration: none;
-}
-.nav a:hover{
-    font-weight: bold;
-}
+
+
+
+
+
+
 .search-form, .filter-form {
     padding: .5rem 0;
     margin-bottom: 20px;
@@ -26,9 +25,11 @@ nav {
 .Color-de-fondo {
     background-color: rgba(0, 0, 123, 0.926);
 }
+
 .Amarillo{
     color: yellow;
 }
+
 .filter-form {
     grid-template-columns: 1fr;
 }
