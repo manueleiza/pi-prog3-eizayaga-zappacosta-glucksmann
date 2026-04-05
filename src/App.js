@@ -9,6 +9,8 @@ import Register from './Screens/Register/Register';
 import Detalle from './Screens/Detalle/Detalle';
 
 import { Route, Link, Switch } from 'react-router-dom';
+import Login from './Screens/Login/Login';
+
 function App() {
   return (
     <React.Fragment>
@@ -18,6 +20,7 @@ function App() {
 
       <Route path="/" exact={true} component={Home}/>
        <Route path="/Register" component={Register}/>
+       <Route path = "/Login" component = {Login}/> 
       <Route path="/busqueda/:busqueda" component={Resultados}/>
       <Route path="/Detalle/:type/:id" component={Detalle}/>
       <Route component={NotFound} />

@@ -6,7 +6,7 @@ class FormRegister extends Component {
         super(props);
         this.state = {
             correo: '',
-            contraseña: '',
+            contrasenia: '',
             enviado: false,
             validarCorreo: false,
 
@@ -19,12 +19,8 @@ class FormRegister extends Component {
             enviado: true,
         })
 
-        if (this.state.contraseña.length >= 6) {
+        if (this.state.contrasenia.length >= 6) {
 
-            const usuario = {
-                correo: this.state.correo,
-                contraseña: this.state.contraseña
-            }
 
             let correoUsado = localStorage.getItem("correoUsuario");
 
@@ -38,12 +34,12 @@ class FormRegister extends Component {
             }
 
             localStorage.setItem("correoUsuario", this.state.correo);
-            localStorage.setItem("constrseñaUsuario", this.state.contraseña)
+            localStorage.setItem("constraseniaUsuario", this.state.contrasenia)
             console.log(localStorage)
 
             this.setState({
             correo: '',
-            contraseña: '',
+            contrasenia: '',
             enviado: false, 
             validarCorreo: false
         });
@@ -57,13 +53,13 @@ class FormRegister extends Component {
         console.log("el formulario se envió")
     }
 
-    crearContraseña(event) {
+    crearContrasenia(event) {
         this.setState({
 
-            contraseña: event.target.value
+            contrasenia: event.target.value
         })
 
-        console.log("contraseña:" + this.state.contraseña)
+        console.log("contrasenia:" + this.state.contrasenia)
     }
 
     crearCorreo(event) {
@@ -75,14 +71,7 @@ class FormRegister extends Component {
         console.log("correo:" + this.state.correo)
     }
 
-    validarCorreo(event) {
-
-
-    }
-
-    validarContraseña(event) {
-
-    }
+    
 
 
 
@@ -96,15 +85,15 @@ class FormRegister extends Component {
                 <div>
                     <label>Correo Electronico: </label>
                     <input  className="campo-forms"  type="text" onChange={(event) => this.crearCorreo(event)} value={this.state.correo} />
-                    {this.state.correo.length === 0 && this.state.enviado ? <p className="error-contraseña">El campo está vacio</p> : ""}
-                    {this.state.validarCorreo ? <p className="error-contraseña">Este correo tiene una cuenta asociada existente</p> : ""}
+                    {this.state.correo.length === 0 && this.state.enviado ? <p className="error-contrasenia">El campo está vacio</p> : ""}
+                    {this.state.validarCorreo ? <p className="error-contrasenia">Este correo ya esta asociado a una cuenta</p> : ""}
                 </div>
                 <div>
                     <label>Constrsaeña: </label>
-                    <input className="campo-forms" type="text" onChange={(event) => this.crearContraseña(event)} value={this.state.contraseña} />
-                    {this.state.contraseña.length === 0 && this.state.enviado ? <p className="error-contraseña">El campo está vacio</p> : ""}
+                    <input className="campo-forms" type="text" onChange={(event) => this.crearContrasenia(event)} value={this.state.contrasenia} />
+                    {this.state.contrasenia.length === 0 && this.state.enviado ? <p className="error-contrasenia">El campo está vacio</p> : ""}
                 </div>
-                {this.state.contraseña.length != 0 && this.state.contraseña.length < 6 && this.state.enviado ? <p className="error-contraseña">La contraseña debe contener al menos 6 caracteres</p> : ""}
+                {this.state.contrasenia.length != 0 && this.state.contrasenia.length < 6 && this.state.enviado ? <p className="error-contrasenia">La contraseña debe contener al menos 6 caracteres</p> : ""}
 
                 <input className="boton" type="submit" value="CREAR CUENTA" />
                 
