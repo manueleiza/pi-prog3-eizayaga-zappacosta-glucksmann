@@ -15,13 +15,16 @@ class Card extends Component {
 
     componentDidMount(){
         let storage = localStorage.getItem("favPeliculas")
-        let storageParseado = JSON.parse(storage)
+
+        let storageParseado = storage ? JSON.parse(storage) : [];
+
         if (storageParseado.includes(this.props.id)){
             this.setState({favorito: true})
         }
     }
 
-    cambiarEstado() {
+
+    cambiarEstado() {   
         this.setState({
             mostrar: !this.state.mostrar
         });

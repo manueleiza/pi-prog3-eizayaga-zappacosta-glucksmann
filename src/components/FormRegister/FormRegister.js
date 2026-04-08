@@ -9,6 +9,7 @@ class FormRegister extends Component {
             contrasenia: '',
             enviado: false,
             validarCorreo: false,
+            listaUsuarios: [],
 
         };
     }
@@ -33,8 +34,20 @@ class FormRegister extends Component {
                 return;
             }
 
-            localStorage.setItem("correoUsuario", this.state.correo);
-            localStorage.setItem("constraseniaUsuario", this.state.contrasenia)
+            let usuario = {
+                correo: this.state.correo,
+                contrasenia: this.state.contrasenia
+            }
+
+
+            let usuarioString = JSON.stringify(usuario)
+
+            let listaUsuarios = this.state.listaUsuarios
+
+            listaUsuarios.push(usuarioString)
+
+
+            localStorage.setItem("usuarios", listaUsuarios);
             console.log(localStorage)
 
             this.setState({
@@ -59,7 +72,6 @@ class FormRegister extends Component {
             contrasenia: event.target.value
         })
 
-        console.log("contrasenia:" + this.state.contrasenia)
     }
 
     crearCorreo(event) {
@@ -68,7 +80,6 @@ class FormRegister extends Component {
             correo: event.target.value,
         })
 
-        console.log("correo:" + this.state.correo)
     }
 
     

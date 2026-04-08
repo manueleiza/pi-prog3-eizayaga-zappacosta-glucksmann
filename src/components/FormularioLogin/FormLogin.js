@@ -12,6 +12,7 @@ class FormLogin extends Component {
             enviado: false,
             validarCorreoContrasenia: false,
 
+
         }
 
     }
@@ -23,25 +24,37 @@ class FormLogin extends Component {
         })
 
 
-        let correoUsado = localStorage.getItem("correoUsuario");
-        let contraUsada = localStorage.getItem("constraseñaUsuario")
+        let listaUsuarios = localStorage.getItem("usuarios");
+        let listaUsuariosParseado = JSON.parse(listaUsuarios)
 
-        if (this.state.contrasenia != contraUsada || this.state.correo != correoUsado) {
-            this.setState ({
-                validarCorreoContrasenia: true,
-            })
+        let mapeoUsuarios = listaUsuariosParseado.map(usuario => {
+            
+            let contrasenia = usuario.contrasenia
+            let correo = usuario.correo
 
-            console.log("los datos son incorrectos")
-           
+            if (this.state.contrasenia === contrasenia && this.state.correo === correo) {
+                this.setState({
+                    validarCorreoContrasenia: true,
+                })
 
-        }
+            }
+            else {
+                this.setState({
+                    validarCorreoContrasenia: false,
+                })
+            }
 
-         this.setState({
-                correo:"",
-                contrasenia: "",
-                enviado: false,
-                validarCorreoContrasenia: false
-            });
+            return usuario
+        })
+
+
+
+        this.setState({
+            correo: "",
+            contrasenia: "",
+            enviado: false,
+            validarCorreoContrasenia: false
+        });
 
 
 
@@ -72,7 +85,7 @@ class FormLogin extends Component {
 
             <form className="form-register" onSubmit={(event) => this.evitarSubmit(event)}>
                 <div>
-                    {this.state.validarCorreoContrasenia ? <p className="error-contrasenia">Credenciales incorrectas</p> : ""}
+                    {this.state.validarCorreoContrasenia === false ? <p className="error-contrasenia">Credenciales incorrectas</p> : ""}
 
                     <label>Correo Electronico: </label>
                     <input className="campo-forms" type="text" onChange={(event) => this.crearCorreo(event)} value={this.state.correo} />
