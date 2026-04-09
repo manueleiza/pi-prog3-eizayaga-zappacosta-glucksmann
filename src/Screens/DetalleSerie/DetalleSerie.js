@@ -10,18 +10,15 @@ class DetalleSerie extends Component {
         this.state = {
             mostrar: false,
             id: props.match.params.id,
-            type: props.match.params.type,
         };
     }
 
   componentDidMount(){
-    if (this.state.type === "tv") {
         this.DetailSerie();
-    }
 }
 
 DetailSerie(){
-fetch(`https://api.themoviedb.org/3/${this.state.type}/${this.state.id}`)
+fetch(`https://api.themoviedb.org/3/tv/${this.state.id}?api_key=eaa57596af1d15ddb4b8b1c407e61403`)
   .then(res => res.json())
   .then(data => this.setState({serie: data }))
   .catch(err => console.error(err));
@@ -34,7 +31,7 @@ fetch(`https://api.themoviedb.org/3/${this.state.type}/${this.state.id}`)
             return <p>Cargando...</p>;
         }
 
-        const info = this.state.data;
+        const info = this.state.serie;
 
         return (
               

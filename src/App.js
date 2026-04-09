@@ -6,7 +6,8 @@ import NotFound from './Screens/NotFound/NotFound';
 import Resultados from './Screens/Resultados/Resultados';
 import Header from './components/Header/Header';
 import Register from './Screens/Register/Register';
-import Detalle from './Screens/Detalle/Detalle';
+import DetalleMovie from './Screens/DetalleMovie/DetalleMovie';
+import DetalleSerie from './Screens/DetalleSerie/DetalleSerie';
 import Favourites from './Screens/Favourites/Favourites';
 
 import { Route, Link, Switch } from 'react-router-dom';
@@ -23,7 +24,8 @@ function App() {
        <Route path="/Register" component={Register}/>
        <Route path = "/Login" component = {Login}/> 
       <Route path="/busqueda/:busqueda" component={Resultados}/>
-      <Route path="/Detalle/:type/:id" component={Detalle}/>
+      <Route path="/DetalleMovie/:id" component={DetalleMovie}/>
+      <Route path="/DetalleSerie/:id" component={DetalleSerie}/>
       <Route path = "/Favoritos/" component ={Favourites}/>
       <Route component={NotFound} />
       

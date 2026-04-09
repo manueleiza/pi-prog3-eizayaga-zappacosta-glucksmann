@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CardSeries from "../CardSeries/CardSeries";
+import CardSeries from "../CardSerie/CardSerie";
 
 
 class SeccionSeries extends Component {

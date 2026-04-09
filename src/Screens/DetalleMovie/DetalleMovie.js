@@ -10,18 +10,17 @@ class DetalleMovie extends Component {
         this.state = {
             mostrar: false,
             id: props.match.params.id,
-            type: props.match.params.type,
+            peli:null
         };
     }
 
 componentDidMount(){
-    if (this.state.type === "tv") {
         this.DetailMovie();
-    }
+    
 }
 
 DetailMovie(){
-fetch(`https://api.themoviedb.org/3/${this.state.type}/${this.state.id}`)
+fetch(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=eaa57596af1d15ddb4b8b1c407e61403`)
   .then(res => res.json())
   .then(data => this.setState({peli: data }))
   .catch(err => console.error(err));
@@ -32,11 +31,12 @@ fetch(`https://api.themoviedb.org/3/${this.state.type}/${this.state.id}`)
 
     
   render() {
-        if (!this.state.data) {
+      console.log('state peli', this.state)
+        if (!this.state.peli) {
             return <p>Cargando...</p>;
         }
 
-        const info = this.state.data;
+        const info = this.state.peli;
 
         return (
               
