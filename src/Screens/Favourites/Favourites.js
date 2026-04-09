@@ -15,24 +15,31 @@ class Favourites extends Component {
   componentDidMount() {
 
     let storage = localStorage.getItem("favPeliculas")
-    let storageParseado = JSON.parse(storage)
-    let peliculasRecuperadas = []
-    if (storageParseado !== null) {
+    
+    
+    
+    if (storage !== null) {
+      let storageParseado = JSON.parse(storage)
+
+      console.log(storageParseado);
+      
 
       storageParseado.map((id) =>
 
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=eaa57596af1d15ddb4b8b1c407e61403&language=en-US&page=1`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=eaa57596af1d15ddb4b8b1c407e61403`)
           .then(response => response.json())
           .then(data => {
-            peliculasRecuperadas.push(data)
+            console.log(data);
+            this.setState({
+              pelisFavoritas: this.state.pelisFavoritas.concat([data])
+            })
           })
       )
 
+     
+      
 
-
-      this.setState({
-        pelisFavoritas: peliculasRecuperadas
-      })
+      
 
 
     }
@@ -41,6 +48,8 @@ class Favourites extends Component {
 
 
   render() {
+    console.log(this.state.pelisFavoritas);
+    
     return (
       <section className="row cards">
         {this.state.pelisFavoritas.length === 0 ? (
