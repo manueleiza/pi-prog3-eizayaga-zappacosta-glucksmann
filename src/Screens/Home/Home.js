@@ -10,9 +10,9 @@ class Home extends Component {
             <main className="Color-de-fondo">
                 <h1>Home</h1>
                 <Buscador />
-                <h2 className="Amarillo">Peliculas más populares:</h2>
+                <h2 className="subtitulo">Peliculas más populares:</h2>
                 <SeccionPelis />
-                <h2 className="Amarillo">Series más populares:</h2>
+                <h2 className="subtitulo">Series más populares:</h2>
                 <SeccionSeries />
             </main>
         )

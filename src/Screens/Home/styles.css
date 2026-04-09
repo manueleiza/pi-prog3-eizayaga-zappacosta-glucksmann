@@ -22,12 +22,17 @@ body{
     column-gap: 5px;
 }
 
-.Color-de-fondo {
-    background-color: rgba(0, 0, 123, 0.926);
+
+
+body {
+        background-color: rgb(255, 243, 138);
+        width: 100%;
+
 }
 
-.Amarillo{
-    color: yellow;
+
+.Subtitulo{
+    color: black;
 }
 
 .filter-form {
@@ -98,3 +103,4 @@ body{
         grid-template-columns: 1fr;
     }
 }
+

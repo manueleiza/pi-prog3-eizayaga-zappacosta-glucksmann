@@ -26,7 +26,7 @@ class SeccionSeries extends Component {
   render() {
     return (
       <React.Fragment>
-        <section className="row cards">
+        <section className="row-cards">
           {this.state.series.length === 0 ? (
             <h3>Cargando...</h3>
           ) : (

@@ -1,0 +1,70 @@
+body{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row-cards{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+
+}
+
+.row-cards article{
+    width: 23%;
+    margin: 1%;
+    background-color: white;
+    border: 2px solid rgb(104, 104, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0.5%;
+}
+
+.detalles{
+    color: blue;
+    margin-top: 1%;
+    font-size: large;
+    text-decoration: none;
+}
+.detalles:hover{
+    text-decoration: underline;
+}
+
+.row-cards article h2{
+    text-align: center;
+}
+
+.row-cards button{
+    margin: 1%;
+
+    background-color: rgb(21, 21, 165);
+    border: 1px solid gray;
+    color: yellow;
+    width: 80%;
+    font-size: larger;
+    
+}
+
+.row-cards button:hover{
+    width: 83%;
+}
+
+.titulo-peli{
+    width: 90%;
+    height: 15%;
+}
+
+.row-cards article img{
+    width: 100%;
+}
+
