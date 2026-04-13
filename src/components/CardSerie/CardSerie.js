@@ -14,7 +14,7 @@ class CardSerie extends Component {
     }
 
     componentDidMount(){
-        let storage = localStorage.getItem("favPeliculas")
+        let storage = localStorage.getItem("favSeries")
 
         let storageParseado = storage ? JSON.parse(storage) : [];
 
@@ -31,7 +31,7 @@ class CardSerie extends Component {
     }
 
 
-    agregarFavorios(id){
+    agregarFavoritos(id){
         let storage = localStorage.getItem("favSeries")
         let storageParseado = JSON.parse(storage)
         if (storageParseado === null){
@@ -80,7 +80,7 @@ class CardSerie extends Component {
 
                 {this.state.favorito ? <button className="SacarFav" onClick={() => this.sacarFavoritos(this.props.id)}>
                     Sacar de Favoritos
-                </button> : <button className="AgregarFav" onClick={() => this.agregarFavorios(this.props.id)}>
+                </button> : <button className="AgregarFav" onClick={() => this.agregarFavoritos(this.props.id)}>
                     Agregar a Favoritos
                 </button>}
                 <Link className="detalles" to = {`/DetalleSerie/${this.props.id}`}>Detalles</Link>
