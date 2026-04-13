@@ -1,104 +1,104 @@
 import react, { Component } from "react";
-import "../FormRegister/FormRegister.css"
 
 
 class FormLogin extends Component {
-
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            correo: "",
-            contrasenia: "",
-            enviado: false,
-            validarCorreoContrasenia: false,
+            username: "",
+            email: "",
+            password: "",
+            error: ""
+        };
+    }
 
 
+    enviarForm(e) {
+        e.preventDefault();
+
+        const { username, email, password } = this.state;
+
+        let usuarioACrear = {
+            username: username,
+            email: email,
+            password: password,
+            createdAt: Date.now()
+        };
+
+        if (password.length < 6) {
+            this.setState({ error: "extension menor a 6 caracteres" });
+console.log("aaa")
+            return;
+        }
+        if (!email.includes("@")) {
+            console.log("estoy en error email");
+            
+            this.setState({ error: "@ no incluido" }) //revisar que no exista un usu con ese mail...
+            return;
         }
 
-    }
+        let usersStorage = localStorage.getItem("users")
+        if (usersStorage != null){
+            let usersParseado = JSON.parse(usersStorage);
 
-    evitarSubmit(event) {
-        event.preventDefault();
-        this.setState({
-            enviado: true,
-        })
+            let usersFiltrados = usersParseado.filter(username => username.email === email);
 
+            if (usersFiltrados.length > 0) {
+                this.setState({error:"ya existe un user con este correo"})
+                console.log("correo error")
 
-        let listaUsuarios = localStorage.getItem("usuarios");
-        let listaUsuariosParseado = JSON.parse(listaUsuarios)
-
-        let mapeoUsuarios = listaUsuariosParseado.map(usuario => {
-            
-            let contrasenia = usuario.contrasenia
-            let correo = usuario.correo
-
-            if (this.state.contrasenia === contrasenia && this.state.correo === correo) {
-                this.setState({
-                    validarCorreoContrasenia: true,
-                })
-
+                return;
             }
             else {
-                this.setState({
-                    validarCorreoContrasenia: false,
-                })
+                usersParseado.push(usuarioACrear);
+                 let usersEnJson = JSON.stringify(usersParseado)
+
+        localStorage.setItem("users", usersEnJson)
             }
+        
+       
+    }
 
-            return usuario
-        })
-
-
-
-        this.setState({
-            correo: "",
-            contrasenia: "",
-            enviado: false,
-            validarCorreoContrasenia: false
-        });
-
+        else{
+            console.log("Entre");
+            
+            let usersInicial = [usuarioACrear]
+            let usersEnJson = JSON.stringify(usersInicial)
+            localStorage.setItem("users", usersEnJson)
+        }
 
 
+                console.log("se envio el formulario")
 
+        
+        
+    }
+
+    controlarCambios(e, estadoNombre){
+        this.setState({[estadoNombre]:e.target.value});
     }
 
 
-    crearContrasenia(event) {
-        this.setState({
 
-            contrasenia: event.target.value
-        })
 
-        console.log("contraseña:" + this.state.contrasenia)
-    }
-
-    crearCorreo(event) {
-        this.setState({
-
-            correo: event.target.value,
-        })
-
-        console.log("correo:" + this.state.correo)
-    }
 
     render() {
         return (
 
-            <form className="form-register" onSubmit={(event) => this.evitarSubmit(event)}>
-                <div>
-                    {this.state.validarCorreoContrasenia === false ? <p className="error-contrasenia">Credenciales incorrectas</p> : ""}
+            <form className="form-register" onSubmit={(e) => this.enviarForm(e)}>
+                
+                <label>Username: </label>
+                    <input className="campo-forms" type="text" value={this.state.correo} onChange={(e) => this.controlarCambios(e, "username")}/>
 
                     <label>Correo Electronico: </label>
-                    <input className="campo-forms" type="text" onChange={(event) => this.crearCorreo(event)} value={this.state.correo} />
-                </div>
-                <div>
+                    <input className="campo-forms" type="email" value={this.state.correo} onChange={(e) => this.controlarCambios(e, "email")}/>
+
                     <label>Constrsaeña: </label>
-                    <input className="campo-forms" type="text" onChange={(event) => this.crearContrasenia(event)} value={this.state.contrasenia} />
-                </div>
+                    <input className="campo-forms" type="password" value={this.state.contrasenia} onChange={(e) => this.controlarCambios(e,"password")}/>
 
-                <input className="boton" type="submit" value="INICIAR SESIÓN" />
+                <button className="boton" type="submit" > Crear cuenta</button>
 
-                <a className="ya-tengo-cuenta" href="">No tengo cuenta</a>
-
+                <a className="ya-tengo-cuenta" href="">Ya tengo cuenta</a>
 
 
             </form>
@@ -106,7 +106,6 @@ class FormLogin extends Component {
 
         )
     }
-
 }
 
 export default FormLogin
