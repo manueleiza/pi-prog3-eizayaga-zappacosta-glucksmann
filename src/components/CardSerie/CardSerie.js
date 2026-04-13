@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
-class Card extends Component {
+class CardSerie extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -32,17 +32,17 @@ class Card extends Component {
 
 
     agregarFavorios(id){
-        let storage = localStorage.getItem("favPeliculas")
+        let storage = localStorage.getItem("favSeries")
         let storageParseado = JSON.parse(storage)
         if (storageParseado === null){
             let PrimerPeli = [id]
             let PrimerPeliString = JSON.stringify(PrimerPeli)
-            localStorage.setItem("favPeliculas", PrimerPeliString)
+            localStorage.setItem("favSeries", PrimerPeliString)
         } 
         else {
             storageParseado.push(id)
             let StorageString = JSON.stringify(storageParseado)
-            localStorage.setItem("favPeliculas", StorageString)
+            localStorage.setItem("favSeries", StorageString)
         }
         
         this.setState({favorito: true})
@@ -50,14 +50,14 @@ class Card extends Component {
     }
 
     sacarFavoritos(id){
-        let favoritos = localStorage.getItem("favPeliculas")
+        let favoritos = localStorage.getItem("favSeries")
         let favoritosParseado = JSON.parse(favoritos)
         let StorageFiltrado = favoritosParseado.filter(function(pelicula){
             return pelicula !== id ;
         });
 
         let StorageString = JSON.stringify(StorageFiltrado);
-        let storage2 = localStorage.setItem("favPeliculas", StorageString)
+        let storage2 = localStorage.setItem("favSeries", StorageString)
 
         this.setState({favorito: false})
         
@@ -93,4 +93,4 @@ class Card extends Component {
 }
 
 
-export default Card;
+export default CardSerie;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "../../components/Card/Card";
+import CardSerie from "../../components/CardSerie/CardSerie";
 
 
 
@@ -7,55 +8,71 @@ class Favourites extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pelisFavoritas: []
+      favoritosPelis: [],
+      favoritosSeries: []
     };
 
   }
 
   componentDidMount() {
 
-    let storage = localStorage.getItem("favPeliculas")
-    
-    
-    
-    if (storage !== null) {
-      let storageParseado = JSON.parse(storage)
+    let storagePeliculas = localStorage.getItem("favPeliculas")
+    let storageSeries = localStorage.getItem("favSeries")
+     
+    if (storagePeliculas !== null) {
+      let storageParseado = JSON.parse(storagePeliculas)
 
       console.log(storageParseado);
       
-
+      let peliculas = []
       storageParseado.map((id) =>
 
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=eaa57596af1d15ddb4b8b1c407e61403`)
           .then(response => response.json())
           .then(data => {
             console.log(data);
+            peliculas.push(data)
             this.setState({
-              pelisFavoritas: this.state.pelisFavoritas.concat([data])
+              favoritosPelis: peliculas
             })
           })
-      )
+        )
+    }
 
-     
+    if(storageSeries !== null){
+      let storageParseado = JSON.parse(storageSeries)
+
+      console.log(storageParseado);
       
+      let series = []
+      storageParseado.map((id) =>
 
-      
-
-
+        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=eaa57596af1d15ddb4b8b1c407e61403`)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            series.push(data)
+            this.setState({
+              favoritosSeries: series
+            })
+          })
+        )
     }
   }
 
 
 
   render() {
-    console.log(this.state.pelisFavoritas);
+    console.log(this.state.favoritosSeries);
+    console.log(this.state.favoritosPelis);
     
     return (
+      <React.Fragment>
       <section className="row cards">
-        {this.state.pelisFavoritas.length === 0 ? (
+        {this.state.favoritosPelis.length === 0 ? (
           <h3>Cargando...</h3>
         ) : (
-          this.state.pelisFavoritas.map((pelicula) => (
+          this.state.favoritosPelis.map((pelicula) => (
             <Card
               key={pelicula.id}
               id={pelicula.id}
@@ -67,6 +84,24 @@ class Favourites extends Component {
         )}
 
       </section>
+      <section className="row cards">
+        {this.state.favoritosSeries.length === 0 ? (
+          <h3>Cargando...</h3>
+        ) : (
+          this.state.favoritosSeries.map((pelicula) => (
+            <CardSerie
+              key={pelicula.id}
+              id={pelicula.id}
+              title={pelicula.name}
+              image={pelicula.poster_path}
+              description={pelicula.overview}
+            />
+          ))
+        )}
+
+      </section>
+
+      </React.Fragment>
     );
   }
 
