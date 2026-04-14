@@ -6,9 +6,9 @@ class SeccionSeries extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      series: [
-
-      ]
+      todasSeries: [],
+      seriesMostradas: 5,
+      contadorCargas: 0,
     }
   }
 
@@ -17,20 +17,30 @@ class SeccionSeries extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          series: data.results
+          todasSeries: data.results,
+          contadorCargas: this.state.contadorCargas + 1,
         });
       })
       .catch(error => console.log("El error fue: " + error));
   }
 
+  verMas() {
+    this.setState({
+      seriesMostradas: this.state.seriesMostradas + 5
+    })
+  }
+
+
+
   render() {
+
+    let seriesMostradas = this.state.todasSeries.slice(0,this.state.seriesMostradas)
     return (
-      <React.Fragment>
         <section className="row-cards">
-          {this.state.series.length === 0 ? (
+          {this.state.todasSeries.length === 0 ? (
             <h3>Cargando...</h3>
           ) : (
-            this.state.series.map((serie) => (
+            seriesMostradas.map((serie) => (
               <CardSeries
                 key={serie.id}
                 id={serie.id}
@@ -41,8 +51,13 @@ class SeccionSeries extends Component {
             ))
           )}
 
+
+
+        <artice className="boton-mas-pelis" >
+        <button onClick={() => this.verMas()}>Ver Más</button>
+        </artice>
+
         </section>
-      </React.Fragment>
     );
   }
 }

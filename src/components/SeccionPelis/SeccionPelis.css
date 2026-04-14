@@ -12,22 +12,37 @@ main{
 
 .row-cards{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     flex-wrap: wrap;
+    margin-bottom: 3%;
+    
 
 }
 
+.subtitulo{
+    font-size: 40px;
+    margin-left: 1%;
+    color:rgb(2, 2, 107) ;
+    text-align: center;
+}
+
 .row-cards article{
-    width: 23%;
+    width: 18%;
     margin: 1%;
     background-color: white;
-    border: 2px solid rgb(104, 104, 255);
+    border: 2px solid rgb(29, 29, 255);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     padding: 0.5%;
+}
+
+.row-cards article:hover{
+    border: 2px solid rgb(29, 29, 255);
+    box-shadow: 0px 0  8px #0011ff;
+
 }
 
 .detalles{
@@ -68,3 +83,22 @@ main{
     width: 100%;
 }
 
+.boton-mas-pelis{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.boton-mas-pelis button{
+    background-color: white;
+    color: black;
+    width: 15%;
+    border: 2px solid  gray;
+    
+
+}
+
+.boton-mas-pelis button:hover{
+    width: 16%;
+}

@@ -6,9 +6,9 @@ class SeccionPelis extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      peliculas: [
-
-      ]
+      todasPeliculas: [],
+      peliculasMostradas: 5,
+      contadorCargas: 0,
     }
   }
 
@@ -17,30 +17,49 @@ class SeccionPelis extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          peliculas: data.results
+          todasPeliculas: data.results,
+          contadorCargas: this.state.contadorCargas + 1
+
         });
+
       })
       .catch(error => console.log("El error fue: " + error));
   }
 
-  render() {
-    return (
-        <section className="row-cards">
-          {this.state.peliculas.length === 0 ? (
-            <h3>Cargando...</h3>
-          ) : (
-            this.state.peliculas.map((pelicula) => (
-              <Card className = "pelicula"
-                key={pelicula.id}
-                id={pelicula.id}
-                title={pelicula.original_title}
-                image={pelicula.poster_path}
-                description={pelicula.overview}
-              />
-            ))
-          )}
+  verMas() {
+    this.setState({
+      peliculasMostradas: this.state.peliculasMostradas + 5
+    })
+  }
 
-        </section>
+
+  render() {
+
+    let peliculasMostradas = this.state.todasPeliculas.slice(0, this.state.peliculasMostradas)
+
+
+    return (
+      <section className="row-cards">
+        {this.state.todasPeliculas.length === 0 ? (
+          <h3>Cargando...</h3>
+        ) : (
+          peliculasMostradas.map((pelicula) => (
+            <Card className="pelicula"
+              key={pelicula.id}
+              id={pelicula.id}
+              title={pelicula.original_title}
+              image={pelicula.poster_path}
+              description={pelicula.overview}
+            />
+          ))
+        )}
+
+        <artice className="boton-mas-pelis" >
+        <button onClick={() => this.verMas()}>Ver Más</button>
+        </artice>
+
+
+      </section>
     );
   }
 }

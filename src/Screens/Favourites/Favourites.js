@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Card from "../../components/Card/Card";
 import CardSerie from "../../components/CardSerie/CardSerie";
-
+import "../../components/SeccionPelis/SeccionPelis.css"
 
 
 class Favourites extends Component {
@@ -68,7 +68,9 @@ class Favourites extends Component {
     
     return (
       <React.Fragment>
-      <section className="row cards">
+      
+      <h2 className="subtitulo">Tus Peliculas Favoritas</h2>
+      <section className="row-cards">
         {this.state.favoritosPelis.length === 0 ? (
           <h3>Cargando...</h3>
         ) : (
@@ -84,7 +86,10 @@ class Favourites extends Component {
         )}
 
       </section>
-      <section className="row cards">
+
+      <h2 className="subtitulo">Tus Series Favoritas</h2>
+
+      <section className="row-cards">
         {this.state.favoritosSeries.length === 0 ? (
           <h3>Cargando...</h3>
         ) : (
