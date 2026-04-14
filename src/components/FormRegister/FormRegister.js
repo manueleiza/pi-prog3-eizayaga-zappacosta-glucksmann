@@ -5,85 +5,78 @@ class FormRegister extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            correo: '',
-            contrasenia: '',
-            enviado: false,
-            validarCorreo: false,
-            listaUsuarios: [],
-
+            username: "",
+            email: "",
+            password: "",
+            error: ""
         };
     }
 
-    evitarSubmit(event) {
-        event.preventDefault();
-        this.setState({
-            enviado: true,
-        })
 
-        if (this.state.contrasenia.length >= 6) {
+    enviarForm(e) {
+        e.preventDefault();
 
+        const { username, email, password } = this.state;
 
-            let correoUsado = localStorage.getItem("correoUsuario");
+        let usuarioACrear = {
+            username: username,
+            email: email,
+            password: password,
+            createdAt: Date.now()
+        };
 
-            if (this.state.correo === correoUsado) {
-                this.setState({
-                    validarCorreo: true,
-                })
-
-                console.log("correo usado")
-                return;
-            }
-
-            let usuario = {
-                correo: this.state.correo,
-                contrasenia: this.state.contrasenia
-            }
-
-
-            let usuarioString = JSON.stringify(usuario)
-
-            let listaUsuarios = this.state.listaUsuarios
-
-            listaUsuarios.push(usuarioString)
-
-
-            localStorage.setItem("usuarios", listaUsuarios);
-            console.log(localStorage)
-
-            this.setState({
-            correo: '',
-            contrasenia: '',
-            enviado: false, 
-            validarCorreo: false
-        });
-
+        if (password.length < 6) {
+            this.setState({ error: "extension menor a 6 caracteres" });
+console.log("aaa")
+            return;
+        }
+        if (!email.includes("@")) {
+            console.log("estoy en error email");
             
-
-
+            this.setState({ error: "@ no incluido" }) //revisar que no exista un usu con ese mail...
+            return;
         }
 
+        let usersStorage = localStorage.getItem("users")
+        if (usersStorage != null){
+            let usersParseado = JSON.parse(usersStorage);
+
+            let usersFiltrados = usersParseado.filter(username => username.email === email);
+
+            if (usersFiltrados.length > 0) {
+                this.setState({error:"ya existe un user con este correo"})
+                console.log("correo error")
+
+                return;
+            }
+            else {
+                usersParseado.push(usuarioACrear);
+                 let usersEnJson = JSON.stringify(usersParseado)
+
+        localStorage.setItem("users", usersEnJson)
+            }
+        
        
-        console.log("el formulario se envió")
     }
 
-    crearContrasenia(event) {
-        this.setState({
+        else{
+            console.log("Entre");
+            
+            let usersInicial = [usuarioACrear]
+            let usersEnJson = JSON.stringify(usersInicial)
+            localStorage.setItem("users", usersEnJson)
+        }
 
-            contrasenia: event.target.value
-        })
 
+                console.log("se envio el formulario")
+
+        
+        
     }
 
-    crearCorreo(event) {
-        this.setState({
-
-            correo: event.target.value,
-        })
-
+    controlarCambios(e, estadoNombre){
+        this.setState({[estadoNombre]:e.target.value});
     }
-
-    
-
 
 
 
@@ -92,24 +85,20 @@ class FormRegister extends Component {
     render() {
         return (
 
-            <form className="form-register" onSubmit={(event) => this.evitarSubmit(event)}>
-                <div>
-                    <label>Correo Electronico: </label>
-                    <input  className="campo-forms"  type="text" onChange={(event) => this.crearCorreo(event)} value={this.state.correo} />
-                    {this.state.correo.length === 0 && this.state.enviado ? <p className="error-contrasenia">El campo está vacio</p> : ""}
-                    {this.state.validarCorreo ? <p className="error-contrasenia">Este correo ya esta asociado a una cuenta</p> : ""}
-                </div>
-                <div>
-                    <label>Constrsaeña: </label>
-                    <input className="campo-forms" type="text" onChange={(event) => this.crearContrasenia(event)} value={this.state.contrasenia} />
-                    {this.state.contrasenia.length === 0 && this.state.enviado ? <p className="error-contrasenia">El campo está vacio</p> : ""}
-                </div>
-                {this.state.contrasenia.length != 0 && this.state.contrasenia.length < 6 && this.state.enviado ? <p className="error-contrasenia">La contraseña debe contener al menos 6 caracteres</p> : ""}
-
-                <input className="boton" type="submit" value="CREAR CUENTA" />
+            <form className="form-register" onSubmit={(e) => this.enviarForm(e)}>
                 
-                <a className="ya-tengo-cuenta" href="">Ya tengo cuenta</a>
+                <label>Username: </label>
+                    <input className="campo-forms" type="text" value={this.state.correo} onChange={(e) => this.controlarCambios(e, "username")}/>
 
+                    <label>Correo Electronico: </label>
+                    <input className="campo-forms" type="email" value={this.state.correo} onChange={(e) => this.controlarCambios(e, "email")}/>
+
+                    <label>Constrsaeña: </label>
+                    <input className="campo-forms" type="password" value={this.state.contrasenia} onChange={(e) => this.controlarCambios(e,"password")}/>
+
+                <button className="boton" type="submit" > Crear cuenta</button>
+
+                <a className="ya-tengo-cuenta" href="">Ya tengo cuenta</a>
 
 
             </form>
