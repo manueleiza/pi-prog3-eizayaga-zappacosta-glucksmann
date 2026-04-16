@@ -13,8 +13,9 @@ class Resultados extends Component {
 
     componentDidMount() {
         const busquedaUsuario = this.props.match.params.busqueda;
+        let tipo =  this.props.match.params.tipo;
 
-        fetch(`https://api.themoviedb.org/3/search/multi?api_key=eaa57596af1d15ddb4b8b1c407e61403&query=${busquedaUsuario}`).then(res => res.json())
+        fetch(`https://api.themoviedb.org/3/search/${tipo}?api_key=eaa57596af1d15ddb4b8b1c407e61403&query=${busquedaUsuario}`).then(res => res.json())
             .then(data => this.setState({
                 resultados: data.results,
                 cargando: false
