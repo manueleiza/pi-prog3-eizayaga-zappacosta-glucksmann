@@ -7,8 +7,7 @@ class Buscador extends Component {
         super();
         this.state = {
             search: "",
-            serie: false,
-            pelicula: false
+            tipo: ""
 
         }
 
@@ -17,7 +16,7 @@ class Buscador extends Component {
     onSumbit(event) {
         event.preventDefault()
         console.log("props de buscador", this.props)
-        this.props.history.push(`/busqueda/serie${this.state.search}`)
+        this.props.history.push(`/busqueda/${this.state.search}/${this.state.tipo}`)
     }
 
     guardarBusqueda(event) {
@@ -28,18 +27,11 @@ class Buscador extends Component {
         console.log("El valor en estado es:", this.state.search)
     }
 
-    buscarSerie(event) {
-        this.setState = {
-            serie: true
-        }
-
-    }
-
-    buscarPelicula(event) {
-        this.setState = {
-            pelicula: true,
-        }
-    }
+   busquedaTipo(event) {
+    this.setState({
+        tipo: event.target.value
+    })
+   }
 
 
 
@@ -49,9 +41,9 @@ class Buscador extends Component {
                 <form onSubmit={(event) => this.onSumbit(event)}>
                     <input type="text" placeholder="Buscar Peliculas o Series" onChange={(event) => this.guardarBusqueda(event)} value={this.state.search}></input>
                     <label>Serie</label>
-                    <input type="radio" onChange={(event) => this.buscarSerie(event)}></input>
+                    <input type="radio" onChange={(event) => this.busquedaTipo(event)} id="tipo" value="tv" ></input>
                     <label>Pelicula</label>
-                    <input type="radio" onChange={(event) => this.buscarPelicula(event)}></input>
+                    <input type="radio" onChange={(event) => this.busquedaTipo(event)} id="tipo" value="movie"></input>
 
                     <button type="submit">Buscar</button>
 
