@@ -12,6 +12,7 @@ import Favourites from './Screens/Favourites/Favourites';
 import Peliculas from './Screens/Peliculas/Peliculas';
 import { Route, Link, Switch } from 'react-router-dom';
 import Login from './Screens/Login/Login';
+import Series from './Screens/Series/Series';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Route path="/DetalleSerie/:id" component={DetalleSerie}/>
       <Route path = "/Favoritos/" component ={Favourites}/>
       <Route path = "/Peliculas" component ={Peliculas}/>
+      <Route path = "/Series" component ={Series}/>
       <Route component={NotFound} />
       
 

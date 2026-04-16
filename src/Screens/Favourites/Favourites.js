@@ -72,7 +72,7 @@ class Favourites extends Component {
       <h2 className="subtitulo">Tus Peliculas Favoritas</h2>
       <section className="row-cards">
         {this.state.favoritosPelis.length === 0 ? (
-          <h3>Cargando...</h3>
+          <h3>No tenes peliculas agregadas a favoritos</h3>
         ) : (
           this.state.favoritosPelis.map((pelicula) => (
             <Card
@@ -91,7 +91,7 @@ class Favourites extends Component {
 
       <section className="row-cards">
         {this.state.favoritosSeries.length === 0 ? (
-          <h3>Cargando...</h3>
+          <h3>No tenes series agregadas a favoritos</h3>
         ) : (
           this.state.favoritosSeries.map((pelicula) => (
             <CardSerie
