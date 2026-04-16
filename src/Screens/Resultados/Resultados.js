@@ -38,6 +38,7 @@ class Resultados extends Component {
                 ) : (
                     <section className="row-cards">
                         
+                        
                         {this.state.resultados != null && this.state.resultados.length > 0 ? (
 
                             this.state.resultados.map(pelicula => (
