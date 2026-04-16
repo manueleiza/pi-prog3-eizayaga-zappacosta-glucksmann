@@ -9,7 +9,7 @@ import Register from './Screens/Register/Register';
 import DetalleMovie from './Screens/DetalleMovie/DetalleMovie';
 import DetalleSerie from './Screens/DetalleSerie/DetalleSerie';
 import Favourites from './Screens/Favourites/Favourites';
-
+import Peliculas from './Screens/Peliculas/Peliculas';
 import { Route, Link, Switch } from 'react-router-dom';
 import Login from './Screens/Login/Login';
 
@@ -27,6 +27,7 @@ function App() {
       <Route path="/DetalleMovie/:id" component={DetalleMovie}/>
       <Route path="/DetalleSerie/:id" component={DetalleSerie}/>
       <Route path = "/Favoritos/" component ={Favourites}/>
+      <Route path = "/Peliculas" component ={Peliculas}/>
       <Route component={NotFound} />
       
 

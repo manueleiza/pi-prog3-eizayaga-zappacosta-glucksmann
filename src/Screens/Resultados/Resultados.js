@@ -14,7 +14,7 @@ class Resultados extends Component {
     componentDidMount() {
         const busquedaUsuario = this.props.match.params.busqueda;
 
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=eaa57596af1d15ddb4b8b1c407e61403&query=${busquedaUsuario}`).then(res => res.json())
+        fetch(`https://api.themoviedb.org/3/search/multi?api_key=eaa57596af1d15ddb4b8b1c407e61403&query=${busquedaUsuario}`).then(res => res.json())
             .then(data => this.setState({
                 resultados: data.results,
                 cargando: false
@@ -36,12 +36,14 @@ class Resultados extends Component {
                     <p>Cargando...</p>
                 ) : (
                     <section className="row-cards">
+                        
                         {this.state.resultados != null && this.state.resultados.length > 0 ? (
+
                             this.state.resultados.map(pelicula => (
                                 <Card className="pelicula"
+                                    tipo="pelicula"
                                     key={pelicula.id}
                                     id={pelicula.id}
-                                    title={pelicula.original_title}
                                     image={pelicula.poster_path}
                                     description={pelicula.overview}
                                 />
@@ -49,6 +51,7 @@ class Resultados extends Component {
                         ) : (
                             <p>No se encontraron resultados.</p>
                         )}
+
                     </section>
                 )}
             </main>

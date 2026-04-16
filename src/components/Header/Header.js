@@ -5,7 +5,7 @@ import "./styles.css"
 
 
 function Header() {
-    const menu = [{ titulo: "Home", ruta: "/" }, { titulo: "Login", ruta: "/Login" }, { titulo: "register", ruta: "/Register" }, { titulo: "Favoritos", ruta: "/Favoritos" }, { titulo: "Ver todas", ruta: "/Ver-todas" }]
+    const menu = [{ titulo: "Home", ruta: "/" }, { titulo: "Login", ruta: "/Login" }, { titulo: "register", ruta: "/Register" }, { titulo: "Favoritos", ruta: "/Favoritos" }, { titulo: "Peliculas", ruta: "/Peliculas" }, {titulo: "Series", ruta: "/Series"}]
     return (
 
         <header>

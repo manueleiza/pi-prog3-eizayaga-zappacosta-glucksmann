@@ -44,7 +44,10 @@ class SeccionPelis extends Component {
           <h3>Cargando...</h3>
         ) : (
           peliculasMostradas.map((pelicula) => (
-            <Card className="pelicula"
+            <Card className="pelicula" 
+              
+              tipo="pelicula"
+           
               key={pelicula.id}
               id={pelicula.id}
               title={pelicula.original_title}

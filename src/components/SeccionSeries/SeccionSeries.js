@@ -42,6 +42,8 @@ class SeccionSeries extends Component {
           ) : (
             seriesMostradas.map((serie) => (
               <CardSeries
+                tipo="serie"
+
                 key={serie.id}
                 id={serie.id}
                 title={serie.original_name}
