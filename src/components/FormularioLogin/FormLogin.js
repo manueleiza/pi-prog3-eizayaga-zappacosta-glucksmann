@@ -5,10 +5,8 @@ class FormLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
             email: "",
             password: "",
-            error: ""
         };
     }
 
@@ -16,10 +14,9 @@ class FormLogin extends Component {
     enviarForm(e) {
         e.preventDefault();
 
-        const { username, email, password } = this.state;
+        const { email, password } = this.state;
 
         let usuarioACrear = {
-            username: username,
             email: email,
             password: password,
             createdAt: Date.now()
@@ -27,55 +24,53 @@ class FormLogin extends Component {
 
         if (password.length < 6) {
             this.setState({ error: "extension menor a 6 caracteres" });
-console.log("aaa")
+            console.log("aaa")
             return;
         }
         if (!email.includes("@")) {
             console.log("estoy en error email");
-            
-            this.setState({ error: "@ no incluido" }) //revisar que no exista un usu con ese mail...
+
+            this.setState({ error: "@ no incluido" })
             return;
         }
 
         let usersStorage = localStorage.getItem("users")
-        if (usersStorage != null){
+        if (usersStorage != null) {
             let usersParseado = JSON.parse(usersStorage);
 
             let usersFiltrados = usersParseado.filter(username => username.email === email);
 
-            if (usersFiltrados.length > 0) {
-                this.setState({error:"ya existe un user con este correo"})
+            if (usersFiltrados.length === 0) {
+                this.setState({ error: "no existe ese usuario" })
                 console.log("correo error")
 
                 return;
             }
-            else {
-                usersParseado.push(usuarioACrear);
-                 let usersEnJson = JSON.stringify(usersParseado)
-
-        localStorage.setItem("users", usersEnJson)
+            if (usersFiltrados[0].password !== password) {
+                this.setState({ error: "las credenciales ingresadas son invalidas" })
+                return;
             }
-        
-       
-    }
+            sessionStorage.setItem(
+                "usuarioEnSesion",
+                JSON.stringify({ sesionActiva: true })
+            );
 
-        else{
-            console.log("Entre");
-            
-            let usersInicial = [usuarioACrear]
-            let usersEnJson = JSON.stringify(usersInicial)
-            localStorage.setItem("users", usersEnJson)
+            this.props.history.push
         }
 
 
-                console.log("se envio el formulario")
+        // recuperar el local storage, buscar en email ingresado, comparar las password --> crear la cookie y redirigir
 
-        
-        
+
+
+        console.log("se envio el formulario")
+
+
+
     }
 
-    controlarCambios(e, estadoNombre){
-        this.setState({[estadoNombre]:e.target.value});
+    controlarCambios(e, estadoNombre) {
+        this.setState({ [estadoNombre]: e.target.value }); //agarra lo q escribe el usuario y lo guarda en el state
     }
 
 
@@ -86,20 +81,15 @@ console.log("aaa")
         return (
 
             <form className="form-register" onSubmit={(e) => this.enviarForm(e)}>
-                
-                <label>Username: </label>
-                    <input className="campo-forms" type="text" value={this.state.correo} onChange={(e) => this.controlarCambios(e, "username")}/>
 
-                    <label>Correo Electronico: </label>
-                    <input className="campo-forms" type="email" value={this.state.correo} onChange={(e) => this.controlarCambios(e, "email")}/>
 
-                    <label>Constrsaeña: </label>
-                    <input className="campo-forms" type="password" value={this.state.contrasenia} onChange={(e) => this.controlarCambios(e,"password")}/>
+                <label>Correo Electronico: </label>
+                <input className="campo-forms" type="email" value={this.state.email} onChange={(e) => this.controlarCambios(e, "email")} />
 
-                <button className="boton" type="submit" > Crear cuenta</button>
+                <label>Constrsaeña: </label>
+                <input className="campo-forms" type="password" value={this.state.password} onChange={(e) => this.controlarCambios(e, "password")} />
 
-                <a className="ya-tengo-cuenta" href="">Ya tengo cuenta</a>
-
+                <button className="boton" type="submit" > Login </button>
 
             </form>
 
