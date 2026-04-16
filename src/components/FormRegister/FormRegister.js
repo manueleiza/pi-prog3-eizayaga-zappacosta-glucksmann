@@ -1,5 +1,6 @@
 import react, { Component } from "react";
 import "./FormRegister.css"
+import { withRouter } from "react-router-dom";
 
 class FormRegister extends Component {
     constructor(props) {
@@ -109,4 +110,4 @@ class FormRegister extends Component {
     }
 }
 
-export default FormRegister
+export default withRouter(FormRegister)

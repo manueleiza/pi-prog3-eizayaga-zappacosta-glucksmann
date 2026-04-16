@@ -13,6 +13,7 @@ import Peliculas from './Screens/Peliculas/Peliculas';
 import { Route, Link, Switch } from 'react-router-dom';
 import Login from './Screens/Login/Login';
 import Series from './Screens/Series/Series';
+import MiPerfil from './Screens/MiPerfil/MiPerfil';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path="/" exact={true} component={Home}/>
        <Route path="/Register" component={Register}/>
        <Route path = "/Login" component = {Login}/> 
+       <Route path = "/MiPerfil" component ={MiPerfil}/>
       <Route path="/busqueda/:busqueda/:tipo" component={Resultados}/>
       <Route path="/DetalleMovie/:id" component={DetalleMovie}/>
       <Route path="/DetalleSerie/:id" component={DetalleSerie}/>

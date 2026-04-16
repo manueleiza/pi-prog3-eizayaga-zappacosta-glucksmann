@@ -1,5 +1,9 @@
 import react, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import Cookies from "universal-cookie";
 
+
+const cookies = new Cookies
 
 class FormLogin extends Component {
     constructor(props) {
@@ -55,15 +59,16 @@ class FormLogin extends Component {
                 JSON.stringify({ sesionActiva: true })
             );
 
-            this.props.history.push
+
+                cookies.set("auth-user", this.state.email)
+
+            this.props.history.push("/");
+
         }
 
 
         // recuperar el local storage, buscar en email ingresado, comparar las password --> crear la cookie y redirigir
 
-
-
-        console.log("se envio el formulario")
 
 
 
@@ -98,4 +103,4 @@ class FormLogin extends Component {
     }
 }
 
-export default FormLogin
+export default withRouter(FormLogin)
