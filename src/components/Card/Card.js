@@ -83,7 +83,7 @@ class Card extends Component {
                 </button> : <button className="AgregarFav" onClick={() => this.agregarFavoritos(this.props.id)}>
                     Agregar a Favoritos
                 </button>}
-                <Link className="detalles" to = {`/DetalleMovie/${this.props.id}`}>Detalles</Link>
+                <Link className="detalles" to = {`/detalleMovie/${this.props.id}`}>Detalles</Link>
                 
                  
                 
