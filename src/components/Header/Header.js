@@ -6,16 +6,21 @@ import Cookies from "universal-cookie";
 
 function Header() {
 
-  let email = localStorage.getItem("usuarioLogueado");
+    let email = localStorage.getItem("usuarioLogueado");
 
 
     const menu = [{ titulo: "Home", ruta: "/" },
-    { titulo: "Favoritos", ruta: "/Favoritos" },
+   
     { titulo: "Peliculas", ruta: "/Peliculas" },
     { titulo: "Series", ruta: "/Series" }]
 
+    if (email) {
+        menu.push({ titulo: "Favoritos", ruta: "/Favoritos" });
+    }
+
     if (!email) {
         menu.push(
+           
             { titulo: "Login", ruta: "/Login" },
             { titulo: "Register", ruta: "/Register" }
         );
@@ -30,7 +35,7 @@ function Header() {
                 <img src="/img/Logo.png" alt="logo" className="Logo" />
 
                 <NavBar
-                    enlaces={menu} 
+                    enlaces={menu}
                 />
 
             </nav>
