@@ -41,3 +41,32 @@ nav {
 header{
     background-color: rgba(0, 0, 123);
 }
+
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    .main-nav, .user {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .nav li {
+        margin: 10px;
+    }
+
+    .Logo {
+        width: 120px;
+        margin-bottom: 10px;
+    }
+}
