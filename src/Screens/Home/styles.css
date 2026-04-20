@@ -30,6 +30,30 @@ body {
 
 }
 
+.buscador{
+    width: 100%;
+    display: flex;
+}
+
+.form-buscador{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.campo-buscar{
+    width: 70%;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    border: 1px solid blue;
+
+}
+
+.form-buscador input{
+    margin: 1%;
+}
 
 .Subtitulo{
     color: black;
@@ -97,6 +121,9 @@ body {
 .all-movies .single-card-movie {
     width: 15%;
 }
+
+
+
 
 @media(min-width: 765px){
     nav {

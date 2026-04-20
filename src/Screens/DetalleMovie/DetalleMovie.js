@@ -1,6 +1,6 @@
 import React from "react";
 import { Component } from "react";
-
+import "./detalles.css"
 
 
 class DetalleMovie extends Component {
@@ -40,13 +40,19 @@ fetch(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=eaa57596af1d1
         return (
               
             <article className='movie-card'>
+
+                <div className="izquierda">
                 <img src={`https://image.tmdb.org/t/p/w500${info.poster_path}`}alt="" />
+                </div>
+
+                <div className="derecha">
                 <h2>{info.original_title} </h2>
-                <p> {info.vote_average}</p>
-                <p> {info.release_date}</p>
-                <p> {info.runtime}</p>
+                <p> <span>Puntuación:</span> {info.vote_average}</p>
+                <p> <span>Fecha de Lanzamiento:</span> {info.release_date}</p>
+                <p> <span>Duración:</span>  {info.runtime} mins</p>
                 <p> {info.overview}</p>
                 <p> {info.genres.name} </p>
+                </div>
             </article>
         )
     }
