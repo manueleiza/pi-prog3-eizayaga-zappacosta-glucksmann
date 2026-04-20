@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import CardSeries from "../CardSerie/CardSerie";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import "./styles.css"
 
 
 class SeccionSeries extends Component {
@@ -24,42 +26,36 @@ class SeccionSeries extends Component {
       .catch(error => console.log("El error fue: " + error));
   }
 
-  verMas() {
-    this.setState({
-      seriesMostradas: this.state.seriesMostradas + 5
-    })
-  }
-
 
 
   render() {
 
-    let seriesMostradas = this.state.todasSeries.slice(0,this.state.seriesMostradas)
+    let seriesMostradas = this.state.todasSeries.slice(0, this.state.seriesMostradas)
     return (
-        <section className="row-cards">
-          {this.state.todasSeries.length === 0 ? (
-            <h3>Cargando...</h3>
-          ) : (
-            seriesMostradas.map((serie) => (
-              <CardSeries
-                tipo="serie"
+      <section className="row-cards">
+        {this.state.todasSeries.length === 0 ? (
+          <h3>Cargando...</h3>
+        ) : (
+          seriesMostradas.map((serie) => (
+            <CardSeries
+              tipo="serie"
 
-                key={serie.id}
-                id={serie.id}
-                title={serie.original_name}
-                image={serie.poster_path}
-                description={serie.overview}
-              />
-            ))
-          )}
+              key={serie.id}
+              id={serie.id}
+              title={serie.original_name}
+              image={serie.poster_path}
+              description={serie.overview}
+            />
+          ))
+        )}
 
 
 
-        <artice className="boton-mas-pelis" >
-        <button onClick={() => this.verMas()}>Ver Más</button>
-        </artice>
+      <div className="ver-todas">
+        <Link to="/Series" className="boton-pelis">Ver todas</Link>
+      </div>
 
-        </section>
+      </section>
     );
   }
 }
