@@ -1,6 +1,7 @@
 import React from "react";
 import { Component } from "react";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header/Header"
+
 
 
 class DetalleMovie extends Component {
@@ -29,7 +30,6 @@ fetch(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=eaa57596af1d1
 
 
 
-    
   render() {
       console.log('state peli', this.state)
         if (!this.state.peli) {
