@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card from "../Card/Card";
 import "./SeccionPelis.css"
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 class SeccionPelis extends Component {
   constructor(props) {
@@ -24,12 +25,6 @@ class SeccionPelis extends Component {
 
       })
       .catch(error => console.log("El error fue: " + error));
-  }
-
-  verMas() {
-    this.setState({
-      peliculasMostradas: this.state.peliculasMostradas + 5
-    })
   }
 
 
@@ -57,11 +52,13 @@ class SeccionPelis extends Component {
           ))
         )}
 
-        <artice className="boton-mas-pelis" >
-        <button onClick={() => this.verMas()}>Ver Más</button>
-        </artice>
-
-
+      <div className="ver-todas">
+        <Link to="/Peliculas" className="boton-pelis">Ver todas</Link>
+      </div>
+      
+    
+      
+      
       </section>
     );
   }
