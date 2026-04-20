@@ -1,5 +1,6 @@
 import React from "react";
 import { Component } from "react";
+import Header from "../../components/Header/Header";
 
 
 
@@ -39,7 +40,8 @@ fetch(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=eaa57596af1d1
         const info = this.state.peli;
 
         return (
-              
+              <React.Fragment>
+                <Header/>
             <article className='movie-card'>
                 <img src={`https://image.tmdb.org/t/p/w500${info.poster_path}`}alt="" />
                 <h2>{info.original_title} </h2>
@@ -49,6 +51,7 @@ fetch(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=eaa57596af1d1
                 <p> {info.overview}</p>
                 <p> {info.genres.name} </p>
             </article>
+            </React.Fragment>
         )
     }
 
