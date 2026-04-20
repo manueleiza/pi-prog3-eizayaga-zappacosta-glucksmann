@@ -1,6 +1,7 @@
 import React from "react";
 import { Component } from "react";
 import Header from "../../components/Header/Header"
+import "./detalles.css"
 
 
 
@@ -49,7 +50,7 @@ class DetalleMovie extends Component {
 
                 <div className="derecha">
                     <h2>{info.original_title} </h2>
-                    <p> <span>Puntuación:</span> {info.vote_average}</p>
+                    <p> <span>Calificación:</span> {info.vote_average}</p>
                     <p> <span>Fecha de Lanzamiento:</span> {info.release_date}</p>
                     <p> <span>Duración:</span>  {info.runtime} mins</p>
                     <p> {info.overview}</p>

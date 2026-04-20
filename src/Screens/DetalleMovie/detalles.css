@@ -18,11 +18,12 @@
 
 .derecha p{
     font-size: larger;
-    color:  rgb(43, 43, 43);
+    font-family: 'Times New Roman', Times, serif;
+
 }
 
 .derecha span{
-    color: rgba(0, 0, 123);;
+    color: rgba(0, 0, 123);
 }
 
 .lista{
@@ -36,7 +37,9 @@
 
 .lista li{
     margin: 1%;
-        color: rgba(0, 0, 123);;
+        color: rgb(214, 193, 0);;
+
+    font-size: large;
 
 }
 

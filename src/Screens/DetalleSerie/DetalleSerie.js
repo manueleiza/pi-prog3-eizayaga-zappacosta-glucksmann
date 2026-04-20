@@ -14,20 +14,20 @@ class DetalleSerie extends Component {
         };
     }
 
-  componentDidMount(){
+    componentDidMount() {
         this.DetailSerie();
-}
+    }
 
-DetailSerie(){
-fetch(`https://api.themoviedb.org/3/tv/${this.state.id}?api_key=eaa57596af1d15ddb4b8b1c407e61403`)
-  .then(res => res.json())
-  .then(data => this.setState({serie: data }))
-  .catch(err => console.error(err));
-}
+    DetailSerie() {
+        fetch(`https://api.themoviedb.org/3/tv/${this.state.id}?api_key=eaa57596af1d15ddb4b8b1c407e61403`)
+            .then(res => res.json())
+            .then(data => this.setState({ serie: data }))
+            .catch(err => console.error(err));
+    }
 
 
 
-   render() {
+    render() {
         if (!this.state.serie) {
             return <p>Cargando...</p>;
         }
@@ -35,16 +35,25 @@ fetch(`https://api.themoviedb.org/3/tv/${this.state.id}?api_key=eaa57596af1d15dd
         const info = this.state.serie;
 
         return (
-              <React.Fragment>
-                <Header/>
-            <article className='serie-card'>
-                <img src={`https://image.tmdb.org/t/p/w500${info.poster_path}`} alt="" /> 
-                <h2>{info.original_name} </h2>
-                <p> {info.vote_average}</p>
-                <p> {info.first_air_date}</p>
-                <p> {info.overview}</p>
-                <p> {info.genres.name} </p>
-            </article>
+            <React.Fragment>
+                <Header />
+                <article className='movie-card'>
+
+                    <div className="izquierda">
+                    <img src={`https://image.tmdb.org/t/p/w500${info.poster_path}`} alt="" />
+                    </div>
+
+                <div className="derecha">
+                    <h2>{info.original_name} </h2>
+                    <p> <span>Calificación:</span> {info.vote_average}</p>
+                    <p> <span>Fcha de Lanzamiento:</span> {info.first_air_date}</p>
+                    <p> {info.overview}</p>
+                    <ul className="lista"> {info.genres.map((genero, idx) => {
+                        return <li key={genero + idx}>{genero.name}</li>;
+                    })} </ul>
+
+                    </div>
+                </article>
             </React.Fragment>
         )
     }
