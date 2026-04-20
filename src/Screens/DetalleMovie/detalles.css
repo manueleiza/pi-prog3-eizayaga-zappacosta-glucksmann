@@ -25,3 +25,18 @@
     color: rgba(0, 0, 123);;
 }
 
+.lista{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.lista li{
+    margin: 1%;
+        color: rgba(0, 0, 123);;
+
+}
+

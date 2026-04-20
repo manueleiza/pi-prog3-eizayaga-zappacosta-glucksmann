@@ -125,9 +125,4 @@ body {
 
 
 
-@media(min-width: 765px){
-    nav {
-        grid-template-columns: 1fr;
-    }
-}
 
