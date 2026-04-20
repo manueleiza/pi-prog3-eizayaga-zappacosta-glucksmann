@@ -29,7 +29,6 @@ fetch(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=eaa57596af1d1
 
 
 
-    
   render() {
       console.log('state peli', this.state)
         if (!this.state.peli) {
