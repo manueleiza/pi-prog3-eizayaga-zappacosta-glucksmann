@@ -126,3 +126,31 @@ body {
 
 
 
+@media (max-width: 480px) {
+
+    .cards {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .single-card-movie,
+    .single-card-people,
+    .single-card-tv,
+    .single-card-playing,
+    .single-card-on-air {
+        width: 45%;
+    }
+
+    .cardBody h3 {
+        font-size: 14px;
+        text-align: center;
+    }
+
+
+    .boton {
+        width: 100%;
+        padding: 8px;
+        font-size: 12px;
+    }
+
+}

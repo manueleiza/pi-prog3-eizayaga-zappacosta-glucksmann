@@ -90,3 +90,45 @@ footer{
 .ya-tengo-cuenta:hover{
     text-decoration: underline;
 }
+
+
+@media (max-width: 480px) {
+
+    .conetenedor-padre {
+        flex-direction: column;
+        padding: 5%;
+    }
+
+    .conetenedor-padre article {
+        width: 100%; 
+        margin-bottom: 20px;
+    }
+
+    .form-register {
+        margin: 5% 0;
+    }
+
+    .form-register div {
+        width: 100%;
+    }
+
+    .campo-forms {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .boton {
+        width: 100%; 
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .ya-tengo-cuenta {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .conetenedor-padre h2 {
+        font-size: 20px;
+    }
+}

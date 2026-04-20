@@ -123,3 +123,53 @@ main{
 .boton-pelis button:hover{
     width: 16%;
 }
+
+
+@media (max-width: 480px) {
+
+    .row-cards {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .sigle-card-movie{
+        width: 90%;
+    }
+    .row-cards article {
+        width:45%;
+        margin: 0;
+        padding: 10px;
+    }
+
+    .row-cards article img {
+        width: 100%;
+        height: auto;
+    }
+
+    .row-cards article h2 {
+        display: none;
+    }
+
+    .row-cards button {
+        width: 100%;
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    .detalles {
+        font-size: 14px;
+    }
+
+    .subtitulo {
+        font-size: 24px;
+    }
+
+    .boton-mas-pelis button,
+    .boton-pelis {
+        width: 80%;
+    }
+
+}
