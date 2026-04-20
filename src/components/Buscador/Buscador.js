@@ -37,9 +37,9 @@ class Buscador extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={(event) => this.onSumbit(event)}>
-                    <input type="text" placeholder="Buscar Peliculas o Series" onChange={(event) => this.guardarBusqueda(event)} value={this.state.search}></input>
+            <div className="buscador">
+                <form className="form-buscador" onSubmit={(event) => this.onSumbit(event)}>
+                    <input className="campo-buscar" type="text" placeholder="Buscar" onChange={(event) => this.guardarBusqueda(event)} value={this.state.search}></input>
                     <label>Serie</label>
                     <input type="radio" onChange={(event) => this.busquedaTipo(event)} id="tipo" value="tv" ></input>
                     <label>Pelicula</label>
