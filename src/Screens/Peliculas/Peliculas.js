@@ -9,6 +9,7 @@ class Peliculas extends Component{
       todasPeliculas: [],
       peliculasMostradas: 5,
       contadorCargas: 0,
+      pagina: 1, 
     }
   }
 
@@ -26,11 +27,31 @@ class Peliculas extends Component{
       .catch(error => console.log("El error fue: " + error));
   }
 
-  verMas() {
-    this.setState({
-      peliculasMostradas: this.state.peliculasMostradas + 5
-    })
+verMas() {
+    let nuevoLimite = this.state.peliculasMostradas + 5;
+
+    if (nuevoLimite > this.state.todasPeliculas.length) {
+      let proximaPagina = this.state.pagina + 1;
+
+      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=eaa57596af1d15ddb4b8b1c407e61403&language=en-US&page=${proximaPagina}`)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({
+            todasPeliculas: this.state.todasPeliculas.concat(data.results),
+            contadorCargas: this.state.contadorCargas + 1,
+            pagina: proximaPagina,
+            peliculasMostradas: nuevoLimite
+          });
+        })
+        .catch(error => console.log("El error fue: " + error));
+    } else {
+      this.setState({
+        peliculasMostradas: nuevoLimite
+      });
+    }
   }
+
+
 
 
   render() {
