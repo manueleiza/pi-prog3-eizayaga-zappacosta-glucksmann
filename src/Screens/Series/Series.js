@@ -1,7 +1,8 @@
-import react, {Component} from "react";
+import react, { Component } from "react";
 import CardSerie from "../../components/CardSerie/CardSerie";
+import Header from "../../components/Header/Header";
 
-class Series extends Component{
+class Series extends Component {
 
   constructor(props) {
     super(props);
@@ -56,29 +57,32 @@ class Series extends Component{
 
 
     return (
-      <section className="row-cards">
-        {this.state.todasSeries.length === 0 ? (
-          <h3>Cargando...</h3>
-        ) : (
-          seriesMostradas.map((pelicula) => (
-            <CardSerie className="pelicula"
-            
-            tipo="serie"
-              key={pelicula.id}
-              id={pelicula.id}
-              title={pelicula.original_name}
-              image={pelicula.poster_path}
-              description={pelicula.overview}
-            />
-          ))
-        )}
+      <react.Fragment>
+        <Header />
+        <section className="row-cards">
+          {this.state.todasSeries.length === 0 ? (
+            <h3>Cargando...</h3>
+          ) : (
+            seriesMostradas.map((pelicula) => (
+              <CardSerie className="pelicula"
 
-        <artice className="boton-mas-pelis" >
-        <button onClick={() => this.verMas()}>Ver Más</button>
-        </artice>
+                tipo="serie"
+                key={pelicula.id}
+                id={pelicula.id}
+                title={pelicula.original_name}
+                image={pelicula.poster_path}
+                description={pelicula.overview}
+              />
+            ))
+          )}
+
+          <artice className="boton-mas-pelis" >
+            <button onClick={() => this.verMas()}>Ver Más</button>
+          </artice>
 
 
-      </section>
+        </section>
+      </react.Fragment>
     );
   }
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Card from "../../components/Card/Card";
 import CardSerie from "../../components/CardSerie/CardSerie";
 import "../../components/SeccionPelis/SeccionPelis.css"
-
+import Header from "../../components/Header/Header";
 
 class Favourites extends Component {
   constructor(props) {
@@ -68,6 +68,7 @@ class Favourites extends Component {
     
     return (
       <React.Fragment>
+        <Header/>
       
       <h2 className="subtitulo">Tus Peliculas Favoritas</h2>
       <section className="row-cards">

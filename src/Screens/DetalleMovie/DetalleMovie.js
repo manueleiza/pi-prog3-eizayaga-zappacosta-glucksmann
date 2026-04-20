@@ -1,6 +1,7 @@
 import React from "react";
 import { Component } from "react";
-import "./detalles.css"
+import Header from "../../components/Header/Header"
+
 
 
 class DetalleMovie extends Component {
@@ -29,9 +30,8 @@ class DetalleMovie extends Component {
 
 
 
-
-    render() {
-        console.log('state peli', this.state)
+  render() {
+      console.log('state peli', this.state)
         if (!this.state.peli) {
             return <p>Cargando...</p>;
         }
@@ -39,7 +39,8 @@ class DetalleMovie extends Component {
         const info = this.state.peli;
 
         return (
-
+              <React.Fragment>
+                <Header/>
             <article className='movie-card'>
 
                 <div className="izquierda">
@@ -60,6 +61,7 @@ class DetalleMovie extends Component {
 
                 </div>
             </article>
+            </React.Fragment>
         )
     }
 
