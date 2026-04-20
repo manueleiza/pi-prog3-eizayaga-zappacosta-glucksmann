@@ -1,6 +1,6 @@
 import React from "react";
 import { Component } from "react";
-import "./detalles.css"
+
 
 
 class DetalleMovie extends Component {
@@ -38,7 +38,8 @@ fetch(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=eaa57596af1d1
         const info = this.state.peli;
 
         return (
-              
+              <React.Fragment>
+                <Header/>
             <article className='movie-card'>
 
                 <div className="izquierda">
@@ -54,6 +55,7 @@ fetch(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=eaa57596af1d1
                 <p> {info.genres.name} </p>
                 </div>
             </article>
+            </React.Fragment>
         )
     }
 

@@ -1,6 +1,7 @@
 import react, { Component } from "react";
 import "./FormRegister.css"
 import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class FormRegister extends Component {
     constructor(props) {
@@ -67,9 +68,10 @@ class FormRegister extends Component {
             let usersInicial = [usuarioACrear]
             let usersEnJson = JSON.stringify(usersInicial)
             localStorage.setItem("users", usersEnJson)
+
         }
 
-
+      this.props.history.push("/Login");
         console.log("se envio el formulario")
 
 
@@ -100,7 +102,7 @@ class FormRegister extends Component {
 
                 <button className="boton" type="submit" > Crear cuenta</button>
 
-                <a className="ya-tengo-cuenta" href="">Ya tengo cuenta</a>
+                <Link to= "/login" className="ya-tengo-cuenta">Ya tengo cuenta</Link>
 
 
             </form>

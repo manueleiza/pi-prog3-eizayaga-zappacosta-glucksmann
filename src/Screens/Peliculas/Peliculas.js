@@ -1,7 +1,8 @@
-import react, {Component} from "react";
+import react, { Component } from "react";
 import Card from "../../components/Card/Card";
+import Header from "../../components/Header/Header";
 
-class Peliculas extends Component{
+class Peliculas extends Component {
 
   constructor(props) {
     super(props);
@@ -9,7 +10,7 @@ class Peliculas extends Component{
       todasPeliculas: [],
       peliculasMostradas: 5,
       contadorCargas: 0,
-      pagina: 1, 
+      pagina: 1,
     }
   }
 
@@ -27,7 +28,7 @@ class Peliculas extends Component{
       .catch(error => console.log("El error fue: " + error));
   }
 
-verMas() {
+  verMas() {
     let nuevoLimite = this.state.peliculasMostradas + 5;
 
     if (nuevoLimite > this.state.todasPeliculas.length) {
@@ -60,29 +61,31 @@ verMas() {
 
 
     return (
-      <section className="row-cards">
-        {this.state.todasPeliculas.length === 0 ? (
-          <h3>Cargando...</h3>
-        ) : (
-          peliculasMostradas.map((pelicula) => (
-            <Card className="pelicula"
-            
-            tipo="pelicula"
-              key={pelicula.id}
-              id={pelicula.id}
-              title={pelicula.original_title}
-              image={pelicula.poster_path}
-              description={pelicula.overview}
-            />
-          ))
-        )}
+      <react.Fragment>
+        <Header />
+        <section className="row-cards">
+          {this.state.todasPeliculas.length === 0 ? (
+            <h3>Cargando...</h3>
+          ) : (
+            peliculasMostradas.map((pelicula) => (
+              <Card className="pelicula"
 
-        <artice className="boton-mas-pelis" >
-        <button onClick={() => this.verMas()}>Ver Más</button>
-        </artice>
+                tipo="pelicula"
+                key={pelicula.id}
+                id={pelicula.id}
+                title={pelicula.original_title}
+                image={pelicula.poster_path}
+                description={pelicula.overview}
+              />
+            ))
+          )}
+
+          <artice className="boton-mas-pelis" >
+            <button onClick={() => this.verMas()}>Ver Más</button>
+          </artice>
 
 
-      </section>
+        </section></react.Fragment>
     );
   }
 }

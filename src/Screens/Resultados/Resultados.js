@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "../../components/Card/Card";
 import CardSerie from "../../components/CardSerie/CardSerie";
 import "../../components/SeccionPelis/SeccionPelis.css"
+import Header from "../../components/Header/Header";
 
 class Resultados extends Component {
     constructor(props) {
@@ -30,6 +31,8 @@ render() {
     const tipoBusqueda = this.props.match.params.tipo;
 
     return (
+        <React.Fragment>
+            <Header/>
         <main>
             <h4>Resultados de: {this.props.match.params.busqueda}</h4>
 
@@ -68,6 +71,7 @@ render() {
                 </section>
             )}
         </main>
+        </React.Fragment>
     );
 }
 }

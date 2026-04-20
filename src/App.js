@@ -18,7 +18,7 @@ import MiPerfil from './Screens/MiPerfil/MiPerfil';
 function App() {
   return (
     <React.Fragment>
-<Header/>
+
       
       <Switch>
 

@@ -59,15 +59,15 @@ class FormLogin extends Component {
                 JSON.stringify({ sesionActiva: true })
             );
 
-
-                cookies.set("auth-user", this.state.email)
+            let usuarioLogueado = usersFiltrados[0];
+            localStorage.setItem("usuarioLogueado", usuarioLogueado.email);
+            cookies.set("auth-user", this.state.email)
 
             this.props.history.push("/");
 
         }
 
-
-        // recuperar el local storage, buscar en email ingresado, comparar las password --> crear la cookie y redirigir
+        this.props.history.push("/");
 
 
 
