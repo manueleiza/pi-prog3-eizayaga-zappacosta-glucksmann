@@ -28,7 +28,9 @@ class FormRegister extends Component {
         };
 
         if (password.length < 6) {
-            this.setState({ error: "extension menor a 6 caracteres" });
+            this.setState({ 
+                error: "extension menor a 6 caracteres" 
+            });
             console.log("aaa")
             return;
         }
@@ -93,12 +95,17 @@ class FormRegister extends Component {
 
                 <label>Username: </label>
                 <input className="campo-forms" type="text" value={this.state.username} onChange={(e) => this.controlarCambios(e, "username")} />
-
                 <label>Correo Electronico: </label>
                 <input className="campo-forms" type="email" value={this.state.email} onChange={(e) => this.controlarCambios(e, "email")} />
+                {this.state.error === "ya existe un user con este correo" ? <p className="error-contrasenia">Este correo ya se encuentra en uso   </p> : null}
+                {this.state.error ===  "@ no incluido"  ? <p className="error-contrasenia">El correo debe incluir "@"  </p> : null}
+
+
 
                 <label>Constraseña: </label>
                 <input className="campo-forms" type="password" value={this.state.password} onChange={(e) => this.controlarCambios(e, "password")} />
+                
+                {this.state.error === "extension menor a 6 caracteres" ? <p className="error-contrasenia">La contraseña debe contener al menos 6 caracteres</p> : null}
 
                 <button className="boton" type="submit" > Crear cuenta</button>
 

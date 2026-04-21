@@ -91,9 +91,14 @@ class FormLogin extends Component {
 
                 <label>Correo Electronico: </label>
                 <input className="campo-forms" type="email" value={this.state.email} onChange={(e) => this.controlarCambios(e, "email")} />
+                {this.state.error === "@ no incluido"  ? <p className="error-contrasenia">El correo debe incluir "@"</p> : null}
 
                 <label>Constraseña: </label>
                 <input className="campo-forms" type="password" value={this.state.password} onChange={(e) => this.controlarCambios(e, "password")} />
+                {this.state.error === "extension menor a 6 caracteres" ? <p className="error-contrasenia">La contraseña debe contener al menos 6 caracteres</p> : null}
+                {this.state.error === "no existe ese usuario"  ? <p className="error-contrasenia">Las credenciales son invalidas</p> : null}
+                {this.state.error === "las credenciales ingresadas son invalidas" ? <p className="error-contrasenia">Las credenciales son invalidas</p> : null}
+
 
                 <button className="boton" type="submit" > Login </button>
                 <Link to= "/Register" className="ya-tengo-cuenta">No tengo cuenta</Link>
