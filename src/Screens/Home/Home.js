@@ -11,7 +11,7 @@ class Home extends Component {
             <React.Fragment>
                 <Header/>
                 <main className="Color-de-fondo">
-                    <h1>Home</h1>
+                    <img className="logo-azul" src="./img/logo-azul.png" />
                     <Buscador />
                     <h2 className="subtitulo">Peliculas más populares:</h2>
                     <SeccionPelis />

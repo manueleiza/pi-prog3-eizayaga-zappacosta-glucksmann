@@ -63,9 +63,10 @@ class Peliculas extends Component {
     return (
       <react.Fragment>
         <Header />
+
         <section className="row-cards">
           {this.state.todasPeliculas.length === 0 ? (
-            <h3>Cargando...</h3>
+            <img className="cargando" src="./img/cargando.gif" alt="gif cargando"></img>
           ) : (
             peliculasMostradas.map((pelicula) => (
               <Card className="pelicula"

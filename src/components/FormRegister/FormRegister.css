@@ -1,3 +1,4 @@
+
 .form-register{
     display: flex;
     flex-direction: column;
@@ -17,6 +18,8 @@
 
 
 
+
+
 .error-contrasenia{
     color: red;
 }
@@ -26,11 +29,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: 70vh;
+    height: 80vh;
     padding: 0.5%;
     background-color: rgb(255, 243, 138);
     padding: 3%;
-    height: 100%;
+    font-size: larger;
 }
 
 .conetenedor-padre article {
@@ -40,6 +43,14 @@
     border: 2px solid rgb(0, 0, 146);
 
 
+}
+
+.conetenedor-padre label{
+    padding-top: 1%;
+}
+
+.conetenedor-padre input{
+    width: 80%;
 }
 
 
@@ -53,9 +64,9 @@
 .boton{
     width: 25%;
     border: none;
+    font-size: large;
     padding: 2%;
     color: yellow;
-    font-weight: 900;
     background-color: rgba(0, 0, 123);
     margin-top: 5%;
 
@@ -118,7 +129,7 @@ footer{
     }
 
     .boton {
-        width: 100%; 
+        width: 80%; 
         padding: 10px;
         font-size: 16px;
     }

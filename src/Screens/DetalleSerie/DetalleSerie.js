@@ -29,7 +29,7 @@ class DetalleSerie extends Component {
 
     render() {
         if (!this.state.serie) {
-            return <p>Cargando...</p>;
+            return <img className="cargando" src="./img/cargando.gif" alt="gif cargando"/>;
         }
 
         const info = this.state.serie;

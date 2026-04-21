@@ -34,7 +34,7 @@ class DetalleMovie extends Component {
   render() {
       console.log('state peli', this.state)
         if (!this.state.peli) {
-            return <p>Cargando...</p>;
+            return <img src="./img/cargando.gif" alt="gif cargando"></img>;
         }
 
         const info = this.state.peli;

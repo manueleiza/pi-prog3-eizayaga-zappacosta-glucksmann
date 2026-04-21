@@ -61,7 +61,7 @@ class Series extends Component {
         <Header />
         <section className="row-cards">
           {this.state.todasSeries.length === 0 ? (
-            <h3>Cargando...</h3>
+            <img className="cargando" src="./img/cargando.gif" alt="gif cargando"/>
           ) : (
             seriesMostradas.map((pelicula) => (
               <CardSerie className="pelicula"

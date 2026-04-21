@@ -43,9 +43,9 @@ class Buscador extends Component {
                     <label>Serie</label>
                     <input type="radio" onChange={(event) => this.busquedaTipo(event)} id="tipo" value="tv" ></input>
                     <label>Pelicula</label>
-                    <input type="radio" onChange={(event) => this.busquedaTipo(event)} id="tipo" value="movie"></input>
+                    <input  type="radio" onChange={(event) => this.busquedaTipo(event)} id="tipo" value="movie"></input>
 
-                    <button type="submit">Buscar</button>
+                    <button className="boton-busqueda" type="submit">Buscar</button>
 
                 </form>
             </div>

@@ -1,6 +1,7 @@
 import react, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Cookies from "universal-cookie";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
 const cookies = new Cookies
@@ -91,10 +92,12 @@ class FormLogin extends Component {
                 <label>Correo Electronico: </label>
                 <input className="campo-forms" type="email" value={this.state.email} onChange={(e) => this.controlarCambios(e, "email")} />
 
-                <label>Constrsaeña: </label>
+                <label>Constraseña: </label>
                 <input className="campo-forms" type="password" value={this.state.password} onChange={(e) => this.controlarCambios(e, "password")} />
 
                 <button className="boton" type="submit" > Login </button>
+                <Link to= "/Register" className="ya-tengo-cuenta">No tengo cuenta</Link>
+
 
             </form>
 

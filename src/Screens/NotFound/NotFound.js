@@ -1,11 +1,16 @@
 import React from "react";
+import "./NotFound.css";
+import Header from "../../components/Header/Header";
 
 function NotFound(){
     return(
-        <div>
-            <h2>404 Not Found</h2>
+        <React.Fragment>
+            <Header/>
+        <div className="contenedor-error">
+            <img className="error" src="/img/error.gif"/>
             <p>Contenido Inexistente</p>
         </div>
+        </React.Fragment>
     );
 }
 

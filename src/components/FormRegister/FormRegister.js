@@ -97,7 +97,7 @@ class FormRegister extends Component {
                 <label>Correo Electronico: </label>
                 <input className="campo-forms" type="email" value={this.state.email} onChange={(e) => this.controlarCambios(e, "email")} />
 
-                <label>Constrsaeña: </label>
+                <label>Constraseña: </label>
                 <input className="campo-forms" type="password" value={this.state.password} onChange={(e) => this.controlarCambios(e, "password")} />
 
                 <button className="boton" type="submit" > Crear cuenta</button>

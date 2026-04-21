@@ -37,7 +37,7 @@ render() {
             <h4>Resultados de: {this.props.match.params.busqueda}</h4>
 
             {this.state.cargando ? (
-                <p>Cargando...</p>
+                <img className="cargando" src="./img/cargando.gif" alt="gif cargando"/>
             ) : (
                 <section className="row-cards">
                     {this.state.resultados != null && this.state.resultados.length > 0 ? (
