@@ -21,7 +21,7 @@ function Peliculas() {
       fetch(`https://api.themoviedb.org/3/discover/movie?api_key=eaa57596af1d15ddb4b8b1c407e61403&language=en-US&page=${pagina}`)
         .then(response => response.json())
         .then(data => {
-          setTodasPeliculas(prevPeliculas => prevPeliculas.concat(data.results));
+          setTodasPeliculas(todasPeliculas.concat(data.results));
           setPagina(pagina + 1);
           setMostradas(mostradas + 5);
         })
