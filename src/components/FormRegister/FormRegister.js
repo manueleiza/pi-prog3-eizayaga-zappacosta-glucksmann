@@ -3,18 +3,16 @@ import "./FormRegister.css"
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-function formRegister (props){
+function formRegister(props) {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
-}
+
 
 
     function enviarForm(e) {
         e.preventDefault();
-
-        const { username, email, password } = useState();
 
         let usuarioACrear = {
             username: username,
@@ -23,16 +21,11 @@ function formRegister (props){
         };
 
         if (password.length < 6) {
-            this.setState({ 
-                error: "extension menor a 6 caracteres" 
-            });
-            console.log("aaa")
+            setError("extencion menor a 6 caracteres");
             return;
         }
         if (!email.includes("@")) {
-            console.log("estoy en error email");
-
-            this.setState({ error: "@ no incluido" }) //revisar que no exista un usu con ese mail...
+            setError("email no contiene @")
             return;
         }
 
@@ -43,10 +36,7 @@ function formRegister (props){
             let usersFiltrados = usersParseado.filter(username => username.email === email);
 
             if (usersFiltrados.length > 0) {
-                this.setState({ error: "ya existe un user con este correo" })
-
-                console.log("correo error")
-
+                setError("ya existe un user con ese correo")
                 return;
             }
             else {
@@ -68,50 +58,49 @@ function formRegister (props){
 
         }
 
-      this.props.history.push("/Login");
+        props.history.push("/Login");
         console.log("se envio el formulario")
 
 
 
     }
 
-    controlarCambios(e, estadoNombre) {
-        this.setState({ [estadoNombre]: e.target.value });
+    function controlarCambios(e, nombre) {
+        if (nombre === "email") {
+            setEmail(e.target.value);
+        }
+        if (nombre === username)
+            setUsername(e.target.value)
     }
 
 
+    return (
+
+        <form className="form-register" onSubmit={(e) => this.enviarForm(e)}>
+
+            <label>Username: </label>
+            <input className="campo-forms" type="text" value={username} onChange={(e) => controlarCambios(e, "username")} />
+            <label>Correo Electronico: </label>
+            <input className="campo-forms" type="email" value={email} onChange={(e) => controlarCambios(e, "email")} />
+            {error === "ya existe un user con este correo" ? <p className="error-contrasenia">Este correo ya se encuentra en uso   </p> : null}
+            {error === "@ no incluido" ? <p className="error-contraseña">El correo debe incluir "@"  </p> : null}
 
 
 
-    render() {
-        return (
+            <label>Constraseña: </label>
+            <input className="campo-forms" type="password" value={password} onChange={(e) => controlarCambios(e, "password")} />
 
-            <form className="form-register" onSubmit={(e) => this.enviarForm(e)}>
+            {error === "extension menor a 6 caracteres" ? <p className="error-contrasenia">La contraseña debe contener al menos 6 caracteres</p> : null}
 
-                <label>Username: </label>
-                <input className="campo-forms" type="text" value={this.state.username} onChange={(e) => this.controlarCambios(e, "username")} />
-                <label>Correo Electronico: </label>
-                <input className="campo-forms" type="email" value={this.state.email} onChange={(e) => this.controlarCambios(e, "email")} />
-                {this.state.error === "ya existe un user con este correo" ? <p className="error-contrasenia">Este correo ya se encuentra en uso   </p> : null}
-                {this.state.error ===  "@ no incluido"  ? <p className="error-contrasenia">El correo debe incluir "@"  </p> : null}
+            <button className="boton" type="submit" > Crear cuenta</button>
+
+            <Link to="/login" className="ya-tengo-cuenta">Ya tengo cuenta</Link>
 
 
-
-                <label>Constraseña: </label>
-                <input className="campo-forms" type="password" value={this.state.password} onChange={(e) => this.controlarCambios(e, "password")} />
-                
-                {this.state.error === "extension menor a 6 caracteres" ? <p className="error-contrasenia">La contraseña debe contener al menos 6 caracteres</p> : null}
-
-                <button className="boton" type="submit" > Crear cuenta</button>
-
-                <Link to= "/login" className="ya-tengo-cuenta">Ya tengo cuenta</Link>
+        </form>
 
 
-            </form>
-
-
-        )
-    }
+    )
 }
 
 export default withRouter(FormRegister)
