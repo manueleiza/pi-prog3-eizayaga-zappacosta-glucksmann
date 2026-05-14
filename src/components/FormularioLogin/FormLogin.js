@@ -7,7 +7,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 const cookies = new Cookies
 
 class FormLogin extends Component {
-    constructor(props) {
+    constructor(props) { 
         super(props);
         this.state = {
             email: "",

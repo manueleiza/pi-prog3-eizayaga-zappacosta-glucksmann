@@ -1,56 +1,40 @@
-import { Component } from "react";
+import { useState } from "react";
 import { withRouter } from "react-router-dom";
 
 
-class Buscador extends Component {
-    constructor() {
-        super();
-        this.state = {
-            search: "",
-            tipo: ""
+function Buscador(props) {
+    const [search, setSearch] = useState("")
+    const [tipo, setTipo] = useState("")
 
-        }
-
-    }
-
-    onSumbit(event) {
+    function onSumbit(event) {
         event.preventDefault()
-        console.log("props de buscador", this.props)
-        this.props.history.push(`/busqueda/${this.state.search}/${this.state.tipo}`)
+        console.log("props de buscador", props)
+        props.history.push(`/busqueda/${search}/${tipo}`)
     }
 
-    guardarBusqueda(event) {
-        this.setState({
-
-            search: event.target.value
-        }, () => console.log("log desde el setState extendido:", this.state.search))
-        console.log("El valor en estado es:", this.state.search)
+    function guardarBusqueda(event) {
+        setSearch(event.target.value)
+        console.log("El valor en estado es:", search)
     }
 
-   busquedaTipo(event) {
-    this.setState({
-        tipo: event.target.value
-    })
+   function busquedaTipo(event) {
+    setTipo(event.target.value)
    }
 
+    return (
+        <div className="buscador">
+            <form className="form-buscador" onSubmit={(event) => onSumbit(event)}>
+                <input className="campo-buscar" type="text" placeholder="Buscar" onChange={(event) => guardarBusqueda(event)} value={this.state.search}></input>
+                <label>Serie</label>
+                <input type="radio" onChange={(event) => busquedaTipo(event)} id="tipo" value="tv" ></input>
+                <label>Pelicula</label>
+                <input  type="radio" onChange={(event) => busquedaTipo(event)} id="tipo" value="movie"></input>
 
+                <button className="boton-busqueda" type="submit">Buscar</button>
 
-    render() {
-        return (
-            <div className="buscador">
-                <form className="form-buscador" onSubmit={(event) => this.onSumbit(event)}>
-                    <input className="campo-buscar" type="text" placeholder="Buscar" onChange={(event) => this.guardarBusqueda(event)} value={this.state.search}></input>
-                    <label>Serie</label>
-                    <input type="radio" onChange={(event) => this.busquedaTipo(event)} id="tipo" value="tv" ></input>
-                    <label>Pelicula</label>
-                    <input  type="radio" onChange={(event) => this.busquedaTipo(event)} id="tipo" value="movie"></input>
-
-                    <button className="boton-busqueda" type="submit">Buscar</button>
-
-                </form>
-            </div>
-        )
-    }
+            </form>
+        </div>
+    )
 }
 
 export default withRouter(Buscador);

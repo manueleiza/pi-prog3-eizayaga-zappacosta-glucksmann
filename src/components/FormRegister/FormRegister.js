@@ -3,28 +3,23 @@ import "./FormRegister.css"
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-class FormRegister extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: "",
-            email: "",
-            password: "",
-            error: ""
-        };
-    }
+function formRegister (props){
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
+}
 
 
-    enviarForm(e) {
+    function enviarForm(e) {
         e.preventDefault();
 
-        const { username, email, password } = this.state;
+        const { username, email, password } = useState();
 
         let usuarioACrear = {
             username: username,
             email: email,
             password: password,
-            createdAt: Date.now()
         };
 
         if (password.length < 6) {

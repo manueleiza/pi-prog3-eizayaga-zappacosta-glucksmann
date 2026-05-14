@@ -3,35 +3,28 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
-class Card extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            mostrar: false,
-            favorito: false,
-        };
-        
+function card(props) {
+    const [mostrar, setMostrar] = useState("")
+    const [favorito, setFavorito] = useState("")
+    
     }
 
-    componentDidMount(){
+    useEffect( () => {
         let storage = localStorage.getItem("favPeliculas")
 
         let storageParseado = storage ? JSON.parse(storage) : [];
 
-        if (storageParseado.includes(this.props.id)){
-            this.setState({favorito: true})
-        }
-    }
+        if (storageParseado.includes(props.id)){
+            setFavorito(true)
+        }}, [])
+    
 
 
-    cambiarEstado() {   
-        this.setState({
-            mostrar: !this.state.mostrar
-        });
-    }
+    function cambiarEstado(){    
+        setFavorito(!mostrar) }
+    
 
-
-    agregarFavoritos(id){
+    function agregarFavoritos(id){
         let storage = localStorage.getItem("favPeliculas")
         let storageParseado = JSON.parse(storage)
         if (storageParseado === null){
@@ -45,11 +38,11 @@ class Card extends Component {
             localStorage.setItem("favPeliculas", StorageString)
         }
         
-        this.setState({favorito: true})
+        setFavorito(true)
         
     }
 
-    sacarFavoritos(id){
+    function sacarFavoritos(id){
         let favoritos = localStorage.getItem("favPeliculas")
         let favoritosParseado = JSON.parse(favoritos)
         let StorageFiltrado = favoritosParseado.filter(function(pelicula){
@@ -59,38 +52,33 @@ class Card extends Component {
         let StorageString = JSON.stringify(StorageFiltrado);
         let storage2 = localStorage.setItem("favPeliculas", StorageString)
 
-        this.setState({favorito: false})
-        
-        
+        setFavorito(false)
     }
 
-    render() {
         return (
             <article className="single-card-movie">
                 <img
-                    src={`https://image.tmdb.org/t/p/w342${this.props.image}`}
+                    src={`https://image.tmdb.org/t/p/w342${props.image}`}
                 />
                 <div className="titulo-peli">
-                <h2>{this.props.title}</h2>
+                <h2>{props.title}</h2>
                 </div>  
-                {this.state.mostrar ? <p>{this.props.description}</p> : null}
-                <button className="more" onClick={() => this.cambiarEstado()}>
-                    {this.state.mostrar ? "Ver menos" : "Ver descripción"}
+                {mostrar ? <p>{props.description}</p> : null}
+                <button className="more" onClick={() => cambiarEstado()}>
+                    {mostrar ? "Ver menos" : "Ver descripción"}
                 </button>
 
-                {this.state.favorito ? <button className="SacarFav" onClick={() => this.sacarFavoritos(this.props.id)}>
+                {favorito ? <button className="SacarFav" onClick={() => sacarFavoritos(props.id)}>
                     Sacar de Favoritos
-                </button> : <button className="AgregarFav" onClick={() => this.agregarFavoritos(this.props.id)}>
+                </button> : <button className="AgregarFav" onClick={() => agregarFavoritos(props.id)}>
                     Agregar a Favoritos
                 </button>}
-                <Link className="detalles" to = {`/detalleMovie/${this.props.id}`}>Detalles</Link>
+                <Link className="detalles" to = {`/detalleMovie/${props.id}`}>Detalles</Link>
                 
                  
                 
             </article>
         );
-    }
-}
 
 
 export default Card;

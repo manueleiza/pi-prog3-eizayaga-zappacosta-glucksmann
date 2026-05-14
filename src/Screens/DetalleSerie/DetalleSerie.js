@@ -29,7 +29,7 @@ class DetalleSerie extends Component {
 
     render() {
         if (!this.state.serie) {
-            return <img className="cargando" src="./img/cargando.gif" alt="gif cargando"/>;
+            return <img className="cargando" src="./img/cargando.gif" alt="gif cargando" />;
         }
 
         const info = this.state.serie;
@@ -40,17 +40,17 @@ class DetalleSerie extends Component {
                 <article className='movie-card'>
 
                     <div className="izquierda">
-                    <img src={`https://image.tmdb.org/t/p/w500${info.poster_path}`} alt="" />
+                        <img src={`https://image.tmdb.org/t/p/w500${info.poster_path}`} alt="" />
                     </div>
 
-                <div className="derecha">
-                    <h2>{info.original_name} </h2>
-                    <p> <span>Calificación:</span> {info.vote_average}</p>
-                    <p> <span>Fcha de Lanzamiento:</span> {info.first_air_date}</p>
-                    <p> {info.overview}</p>
-                    <ul className="lista"> {info.genres.map((genero, idx) => {
-                        return <li key={genero + idx}>{genero.name}</li>;
-                    })} </ul>
+                    <div className="derecha">
+                        <h2>{info.original_name} </h2>
+                        <p> <span>Calificación:</span> {info.vote_average}</p>
+                        <p> <span>Fcha de Lanzamiento:</span> {info.first_air_date}</p>
+                        <p> {info.overview}</p>
+                        <ul className="lista"> {info.genres.map((genero, idx) => {
+                            return <li key={genero + idx}>{genero.name}</li>;
+                        })} </ul>
 
                     </div>
                 </article>
