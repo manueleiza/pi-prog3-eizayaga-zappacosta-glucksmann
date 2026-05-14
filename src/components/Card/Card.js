@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
-import React, { Component } from "react";
+
+import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
@@ -7,7 +7,7 @@ function card(props) {
     const [mostrar, setMostrar] = useState("")
     const [favorito, setFavorito] = useState("")
     
-    }
+    
 
     useEffect( () => {
         let storage = localStorage.getItem("favPeliculas")
@@ -21,7 +21,7 @@ function card(props) {
 
 
     function cambiarEstado(){    
-        setFavorito(!mostrar) }
+        setMostrar(!mostrar) }
     
 
     function agregarFavoritos(id){
@@ -79,7 +79,7 @@ function card(props) {
                 
             </article>
         );
-
+    }
 
 export default Card;
 

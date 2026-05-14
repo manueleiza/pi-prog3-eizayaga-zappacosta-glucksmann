@@ -1,4 +1,4 @@
-import react, { Component } from "react";
+import react, { useState } from "react";
 import "./FormRegister.css"
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
