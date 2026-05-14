@@ -1,42 +1,29 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import CardSeries from "../CardSerie/CardSerie";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./styles.css"
 
 
-class SeccionSeries extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todasSeries: [],
-      seriesMostradas: 5,
-      contadorCargas: 0,
-    }
-  }
+function SeccionSeries(){
 
-  componentDidMount() {
+  const[series, setSeries]=useState([])
+
+  useEffect(() => {
     fetch(`https://api.themoviedb.org/3/tv/popular?api_key=eaa57596af1d15ddb4b8b1c407e61403&language=en-US&page=1`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          todasSeries: data.results,
-          contadorCargas: this.state.contadorCargas + 1,
-        });
+      .then((response) => response.json())
+      .then((data) => {
+        setSeries(data.results);
       })
-      .catch(error => console.log("El error fue: " + error));
-  }
+      .catch((error) => console.log("El error fue: " + error));
+  }, []); 
 
 
-
-  render() {
-
-    let seriesMostradas = this.state.todasSeries.slice(0, this.state.seriesMostradas)
-    return (
+  return (
       <section className="row-cards">
-        {this.state.todasSeries.length === 0 ? (
+        {series.length === 0 ? (
           <h3>Cargando...</h3>
         ) : (
-          seriesMostradas.map((serie) => (
+          series.map((serie) => (
             <CardSeries
               tipo="serie"
 
@@ -58,5 +45,5 @@ class SeccionSeries extends Component {
       </section>
     );
   }
-}
+
 export default SeccionSeries;
