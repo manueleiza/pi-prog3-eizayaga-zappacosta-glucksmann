@@ -1,5 +1,12 @@
 import React from 'react';
 
+import React, { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/config";
+
 import Footer from './components/Footer/Footer';
 import Home from './Screens/Home/Home';
 import NotFound from './Screens/NotFound/NotFound';
@@ -14,6 +21,19 @@ import { Route, Link, Switch } from 'react-router-dom';
 import Login from './Screens/Login/Login';
 import Series from './Screens/Series/Series';
 import MiPerfil from './Screens/MiPerfil/MiPerfil';
+
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function LoginYRegistro() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Register" component={Register} />
+    </Stack.Navigator>
+  );
+}
 
 function App() {
   return (
